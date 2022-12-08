@@ -26,6 +26,6 @@ def test_index(request):
     return render(request, 'test/index.html', { 'tests': tests })
 
 # Define the test detail view
-def detail(request, test_id):
+def test_detail(request, test_id):
     test = Test.objects.get(id=test_id)
     return render(request, 'test/detail.html', { 'test': test})
