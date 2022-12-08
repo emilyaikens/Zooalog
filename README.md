@@ -1,7 +1,29 @@
 # Zooalog
 
 ## Description: 
-Zooalog is an animal husbandry tracking app. Hobbiests can use this application to log inputs and outputs of animals in their care. Logs can include parameters such as diet, behavior, and customizable abiotic factors including but not limited to temperature, humidity, salinity, pH, O2 levels and NO3. 
+
+Zooalog is an animal husbandry tracking app. 
+
+Hobbiests can use this application to log inputs and outputs of animals in their care. Logs can include parameters such as diet, behavior, and customizable abiotic factors including but not limited to temperature, humidity, salinity, pH, O2 levels and NO3. 
+
+This app is enclosure-centric, meaning the user must create an Enclosure in order to log an animal. As such, this app is better designed for users with critters such as fish, reptiles, and contained mammals or birds. In theory a user could log their dog or cat, but they would have to do so by first creating an Enclosure. Perhaps in that case they could just call the Enclosure "House", but really this app is more catered towards the former examples. 
+
+## Goals
+
+The three broad user stories this app achives are:
+1. AAU, I want to create new enclosures (Create)
+2. AAU, I want to view my existing enclosures (Read)
+3. AAU, I want to manage my existing enclosures (Update and Delete)
+
+Of course each of these can be broken down quite a bit, but these user stories boil down to the idea that this app needs to be full CRUD.
+
+Responsive interface
+
+User-friendly interface
+
+User authentication
+
+Page authorization
 
 ## Technologies Used
 
