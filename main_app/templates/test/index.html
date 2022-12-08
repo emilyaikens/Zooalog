@@ -1,0 +1,25 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Test</h1>
+<hr />
+<p>Test Page</p>
+{% for test in tests %}
+    <a href="{% url 'detail' test.id%}">
+    <div class="card">
+        <div class="card-content teal-text text-darken-4">
+        <span class="card-title">{{ test.name }}</span>
+        <p>Description: {{ test.description|linebreaks }}</p>
+        {% if test.number > 5 %}
+            <p>Large: {{ test.number }}</p>
+        {% else %}
+            <p>Small: {{ test.number }}</p>
+        {% endif %}
+        </div>
+    </div>
+</a>
+{% endfor %}
+
+{% endblock %}

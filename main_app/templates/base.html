@@ -1,0 +1,40 @@
+<!-- Template inheritance is a feature built in to Django -->
+<!-- Templates can extend another template via blocks -->
+<!-- Django template tags control logic within a template -->
+
+<!-- load css from static/css/style.css -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zooalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="navbar-fixed">
+        <nav class="teal darken-4">
+        <div class="nav-wrapper">
+            <ul>
+            <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Zooalog</a></li>
+            </ul>
+            <ul class="right">
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Test</a></li>
+            </ul>
+        </div>
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="page-footer teal darken-4">
+        <div class="right">All Rights Reserved, &copy; 2022 Zooalog &nbsp;</div>
+    </footer>
+</body>
+</html>
