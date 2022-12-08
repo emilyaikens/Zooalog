@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 class Test:
-    def __init__(self, name, description):
+    def __init__(self, name, description, number):
         self.name = name
         self.description = description
 
 tests = [
-    Test('one', 'first test'),
-    Test('two', 'second test')
+    Test('one', 'first test', 3),
+    Test('two', 'second test', 10),
 ]
 
 # View functions must define a positional parameter to accept a request object
