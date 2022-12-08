@@ -9,7 +9,7 @@
 {% for test in tests %}
     <a href="{% url 'detail' test.id%}">
     <div class="card">
-        <div class="card-content">
+        <div class="card-content teal-text text-darken-4">
         <span class="card-title">{{ test.name }}</span>
         <p>Description: {{ test.description|linebreaks }}</p>
         {% if test.number > 5 %}
