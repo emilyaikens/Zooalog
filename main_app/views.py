@@ -24,3 +24,8 @@ def test_index(request):
     # retrieve all tests from db and save to variable tests
     tests = Test.objects.all()
     return render(request, 'test/index.html', { 'tests': tests })
+
+# Define the test detail view
+def detail(request, test_id):
+    test = Test.objects.get(id=test_id)
+    return render(request, 'test/detail.html', { 'test': test})
