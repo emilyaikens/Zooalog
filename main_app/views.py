@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Test
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -20,4 +21,6 @@ def about(request):
 
 # Define the test view
 def test_index(request):
+    # retrieve all tests from db and save to variable tests
+    tests = Test.objects.all()
     return render(request, 'test/index.html', { 'tests': tests })
