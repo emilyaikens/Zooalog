@@ -7,7 +7,7 @@
 <hr />
 <p>Test Page</p>
 {% for test in tests %}
-    <a href="/test/{{ test.id }}">
+    <a href="{% url 'detail' test.id%}">
     <div class="card">
         <div class="card-content">
         <span class="card-title">{{ test.name }}</span>
