@@ -7,10 +7,11 @@
 <hr />
 <p>Test Page</p>
 {% for test in tests %}
+    <a href="/test/{{ test.id }}">
     <div class="card">
         <div class="card-content">
         <span class="card-title">{{ test.name }}</span>
-        <p>Description: {{ test.description }}</p>
+        <p>Description: {{ test.description|linebreaks }}</p>
         {% if test.number > 5 %}
             <p>Large: {{ test.number }}</p>
         {% else %}
@@ -18,6 +19,7 @@
         {% endif %}
         </div>
     </div>
+</a>
 {% endfor %}
 
 {% endblock %}
