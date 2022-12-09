@@ -58,6 +58,6 @@ Mockup for home page
 
 ## Progress Report
 
-* Dec 8 2022: Implement full CRUD for Test. Form to create new Tests and ability to update and delete. Add Sub Model to models.py, migrate and can view 
+* Dec 8 2022: Implement full CRUD for Test. Form to create new Tests and ability to update and delete. Add Sub Model to models.py, migrate and can view. Form to create new Sub.
 * Dec 7 2022: Create Test model and migrate to postgreSQL. Set up templates (base.html, about.html, test/detail.html, test/index.html), set up some basic CSS, and config routes (urls.py and views.py) for each
 * Dec 6 2022: Initial commit. Deploy to Heroku and create blank home page with URL/Views route config
