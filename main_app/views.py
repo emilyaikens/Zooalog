@@ -35,3 +35,4 @@ def test_detail(request, test_id):
 class TestCreate(CreateView):
     model = Test
     fields = '__all__'
+    success_url = '/test/'
