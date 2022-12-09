@@ -25,7 +25,7 @@
 <!-- Form for new sub -->
 <div class="card">
     <div class="card-content">
-        <form method="POST">
+        <form action="{% url 'add_sub' test.id}" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
             {{ sub_form.as_p }}
