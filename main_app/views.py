@@ -35,4 +35,5 @@ def test_detail(request, test_id):
 class TestCreate(CreateView):
     model = Test
     fields = '__all__'
-    success_url = '/test/'
+    # use code below to return user to a specific url after form submits
+    #success_url = '/test/'
