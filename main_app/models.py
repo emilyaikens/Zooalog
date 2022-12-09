@@ -31,3 +31,6 @@ class Sub(models.Model):
     # Create foreign key for Test
     # on_delete: when a Test is deleted, all of its children will also be deleted
     test = models.ForeignKey(Test, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-date']
