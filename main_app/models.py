@@ -23,3 +23,11 @@ class Test(models.Model):
     # Meta class with ordering dictates what order the data will be queried in
     class Meta:
         ordering = ['number']
+
+class Sub(models.Model):
+    date = models.DateField()
+    description = models.TextField(max_length=250)
+
+    # Create foreign key for Test
+    # on_delete: when a Test is deleted, all of its children will also be deleted
+    test = models.ForeignKey(Test, on_delete=models.CASCADE)
