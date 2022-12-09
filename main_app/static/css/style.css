@@ -12,3 +12,25 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+
+/* datepicker colors */
+
+.datepicker-date-display{
+    background-color: #004d40;
+}
+
+.datepicker-close {
+    color: #004d40;
+}
+
+.is-selected {
+    background-color: #004d40;
+}
+
+.is-today {
+    background-color: #004d40;
+}
+
+.datepicker-done, .datepicker-cancel {
+    color: #004d40;
+}

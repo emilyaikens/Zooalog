@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Test
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import SubForm
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -29,7 +30,8 @@ def test_index(request):
 # Define the test detail view
 def test_detail(request, test_id):
     test = Test.objects.get(id=test_id)
-    return render(request, 'test/detail.html', { 'test': test})
+    sub_form = SubForm()
+    return render(request, 'test/detail.html', { 'test': test, 'sub_form': sub_form})
 
 # CBV to create new test
 class TestCreate(CreateView):
@@ -48,3 +50,14 @@ class TestDelete(DeleteView):
     model = Test
     # Must redirect after deletion because test will no longer exist
     success_url = '/test/'
+
+def add_sub(request, test_id):
+    #create SubForm instatnce using data in request.POST
+    form = SubForm(request.POST)
+    # Validate the form
+    if form.is_valid:
+        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+        new_sub = form.save(commit=False)
+        new_sub.test_id = test_id
+        new_sub.save()
+    return redirect ('detail', test_id=test_id)
