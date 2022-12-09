@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Test
+from django.views.generic.edit import CreateView
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -29,3 +30,8 @@ def test_index(request):
 def test_detail(request, test_id):
     test = Test.objects.get(id=test_id)
     return render(request, 'test/detail.html', { 'test': test})
+
+# CBV to create new test
+class TestCreate(CreateView):
+    model = Test
+    fields = '__all__'
