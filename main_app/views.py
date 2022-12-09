@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Test
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -29,3 +30,21 @@ def test_index(request):
 def test_detail(request, test_id):
     test = Test.objects.get(id=test_id)
     return render(request, 'test/detail.html', { 'test': test})
+
+# CBV to create new test
+class TestCreate(CreateView):
+    model = Test
+    fields = '__all__'
+    # use code below to return user to a specific url after form submits
+    #success_url = '/test/'
+
+# CBV to update test
+class TestUpdate(UpdateView):
+    model = Test
+    fields = '__all__'
+
+# CBV to delete test
+class TestDelete(DeleteView):
+    model = Test
+    # Must redirect after deletion because test will no longer exist
+    success_url = '/test/'
