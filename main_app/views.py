@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Test
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -50,3 +50,14 @@ class TestDelete(DeleteView):
     model = Test
     # Must redirect after deletion because test will no longer exist
     success_url = '/test/'
+
+def add_sub(request, test_id):
+    #create SubForm instatnce using data in request.POST
+    form = SubForm(request.POST)
+    # Validate the form
+    if form.is_valid:
+        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+        new_sub = form.save(commit=False)
+        new_sub.test_id = test_id
+        new_sub.save()
+    return redirect ('detail', test_id=test_id)
