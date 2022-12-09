@@ -20,5 +20,18 @@
         </div>
     </div>
 </div>
+<table class="striped">
+    <thead>
+        <tr><th>Date</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+        {% for sub in test.sub_set.all %}
+        <tr>
+            <td>{{sub.date}}</td>
+            <td>{{sub.description}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
