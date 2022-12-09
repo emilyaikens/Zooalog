@@ -19,3 +19,7 @@ class Test(models.Model):
     # reverse will return the correct path for the detail named route by attaching id
     def get_absolute_url(self):
         return reverse('detail', kwargs={'test_id': self.id})
+
+    # Meta class with ordering dictates what order the data will be queried in
+    class Meta:
+        ordering = ['number']
