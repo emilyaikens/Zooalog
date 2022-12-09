@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Test
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .forms import SubForm
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -29,7 +30,8 @@ def test_index(request):
 # Define the test detail view
 def test_detail(request, test_id):
     test = Test.objects.get(id=test_id)
-    return render(request, 'test/detail.html', { 'test': test})
+    sub_form = SubForm()
+    return render(request, 'test/detail.html', { 'test': test, 'sub_form': sub_form})
 
 # CBV to create new test
 class TestCreate(CreateView):
