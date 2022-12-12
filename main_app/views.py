@@ -83,8 +83,8 @@ def signup(request):
             return redirect('index')
         else:
             err_msg = 'Invalid, try again'
-    context = {'form': form, 'error_message': err_msg}
     form = UserCreationForm()
+    context = {'form': form, 'error_message': err_msg}
     return render(request, 'registration/signup.html', context)
 
     # use code below to return user to a specific url after form submits
