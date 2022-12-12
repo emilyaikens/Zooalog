@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SubForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -14,6 +16,10 @@ from django.contrib.auth.forms import UserCreationForm
 # Example: 
 # def home(request):
 #    return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
+
+# auth docoration 
+# above function: @login_required
+# in class example: class testCreate(LoginRequiredMixin, Create View)
 
 # Define the home view
 def home(request):
