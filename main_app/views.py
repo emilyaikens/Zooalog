@@ -32,7 +32,7 @@ def about(request):
 # Define the test view
 def test_index(request):
     # retrieve all tests from db and save to variable tests
-    tests = Test.objects.all()
+    tests = Test.objects.filter(user=request.user)
     return render(request, 'test/index.html', { 'tests': tests })
 
 # Define the test detail view
@@ -42,7 +42,7 @@ def test_detail(request, test_id):
     return render(request, 'test/detail.html', { 'test': test, 'sub_form': sub_form})
 
 # CBV to create new test
-class TestCreate(CreateView):
+class TestCreate(LoginRequiredMixin, CreateView):
     model = Test
     fields = '__all__'
 
@@ -83,7 +83,6 @@ def signup(request):
             return redirect('index')
         else:
             error_message = 'Invalid sign up - try again'
-    # A bad POST or a GET request, so render signup.html with an empty form
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)

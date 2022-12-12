@@ -16,3 +16,4 @@ urlpatterns = [
     path('test/<int:test_id>/add_sub/', views.add_sub, name='add_sub'),
     path('accounts/signup', views.signup, name='signup'),
     ]
+    

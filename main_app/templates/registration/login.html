@@ -5,8 +5,8 @@
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" class="btn" value="login">
-    <!-- below: Django's auth feature that automatically redirects user that tries to access a protected route -->
     <input type="hidden" name="next" value="{{ next }}">
 </form>
 
 {% endblock %}
+
