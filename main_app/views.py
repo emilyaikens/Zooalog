@@ -74,7 +74,7 @@ def add_sub(request, test_id):
     return redirect ('detail', test_id=test_id)
 
 def signup(request):
-    error_message = ''
+    err_msg = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -82,9 +82,9 @@ def signup(request):
             login(request, user)
             return redirect('index')
         else:
-            error_message = 'Invalid sign up - try again'
+            err_msg = 'Invalid - try again'
+    context = {'form': form, 'error_message': err_msg}
     form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
     # use code below to return user to a specific url after form submits
