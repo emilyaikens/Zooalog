@@ -53,7 +53,7 @@ Mockup for home page
 [User Stories: Trello](https://trello.com/invite/b/MhlMC0Qn/c32c891202deb797028f567e7c5d68d3/zooalog)
 <details>
 <summary> ERD created with Lucidchart </summary>
-<img src="https://i.imgur.com/yfArDaY.png">
+<img src="main_app/static/images/erd.png">
 </details>
 
 ## Progress Report

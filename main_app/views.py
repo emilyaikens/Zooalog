@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from .models import Test
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SubForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -12,6 +16,10 @@ from .forms import SubForm
 # Example: 
 # def home(request):
 #    return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
+
+# auth docoration 
+# above function: @login_required
+# in class example: class testCreate(LoginRequiredMixin, Create View)
 
 # Define the home view
 def home(request):
@@ -24,7 +32,7 @@ def about(request):
 # Define the test view
 def test_index(request):
     # retrieve all tests from db and save to variable tests
-    tests = Test.objects.all()
+    tests = Test.objects.filter(user=request.user)
     return render(request, 'test/index.html', { 'tests': tests })
 
 # Define the test detail view
@@ -34,11 +42,14 @@ def test_detail(request, test_id):
     return render(request, 'test/detail.html', { 'test': test, 'sub_form': sub_form})
 
 # CBV to create new test
-class TestCreate(CreateView):
+class TestCreate(LoginRequiredMixin, CreateView):
     model = Test
     fields = '__all__'
-    # use code below to return user to a specific url after form submits
-    #success_url = '/test/'
+
+    # when new test form submitted assign it to the logged in user
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 # CBV to update test
 class TestUpdate(UpdateView):
@@ -61,3 +72,20 @@ def add_sub(request, test_id):
         new_sub.test_id = test_id
         new_sub.save()
     return redirect ('detail', test_id=test_id)
+
+def signup(request):
+    err_msg = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            err_msg = 'Invalid, try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': err_msg}
+    return render(request, 'registration/signup.html', context)
+
+    # use code below to return user to a specific url after form submits
+    #success_url = '/test/'
