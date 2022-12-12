@@ -82,7 +82,7 @@ def signup(request):
             login(request, user)
             return redirect('index')
         else:
-            err_msg = 'Invalid - try again'
+            err_msg = 'Invalid, try again'
     context = {'form': form, 'error_message': err_msg}
     form = UserCreationForm()
     return render(request, 'registration/signup.html', context)
