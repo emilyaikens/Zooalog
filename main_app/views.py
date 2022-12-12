@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Test
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import SubForm
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -65,7 +67,20 @@ def add_sub(request, test_id):
         new_sub.save()
     return redirect ('detail', test_id=test_id)
 
-
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    # A bad POST or a GET request, so render signup.html with an empty form
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'registration/signup.html', context)
 
     # use code below to return user to a specific url after form submits
     #success_url = '/test/'
