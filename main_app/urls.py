@@ -14,4 +14,4 @@ urlpatterns = [
     path('test/<int:pk>/update/', views.TestUpdate.as_view(), name="test_update"),
     path('test/<int:pk>/delete/', views.TestDelete.as_view(), name="test_delete"), 
     path('test/<int:test_id>/add_sub/', views.add_sub, name='add_sub'),
-]
+    ]
