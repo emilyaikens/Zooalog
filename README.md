@@ -15,7 +15,7 @@ The three broad user stories this app achives are:
 2. AAU, I want to view my existing enclosures (Read)
 3. AAU, I want to manage my existing enclosures (Update and Delete)
 
-Of course each of these can be broken down quite a bit, but these user stories boil down to the idea that this app needs to be full CRUD.
+Of course each of these can be broken down quite a bit, but these overaching user stories boil down to the idea that this app needs to be full CRUD.
 
 Responsive interface
 
@@ -58,6 +58,7 @@ Mockup for home page
 
 ## Progress Report
 
+* Dec 11 2022: Set up user authentication and authorization. Signup, login, and logout functionality are all up and running.
 * Dec 8 2022: Implement full CRUD for Test. Form to create new Tests and ability to update and delete. Add Sub Model to models.py, migrate and can view. Form to create new Sub.
 * Dec 7 2022: Create Test model and migrate to postgreSQL. Set up templates (base.html, about.html, test/detail.html, test/index.html), set up some basic CSS, and config routes (urls.py and views.py) for each
 * Dec 6 2022: Initial commit. Deploy to Heroku and create blank home page with URL/Views route config
