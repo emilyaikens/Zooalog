@@ -37,8 +37,11 @@ def test_detail(request, test_id):
 class TestCreate(CreateView):
     model = Test
     fields = '__all__'
-    # use code below to return user to a specific url after form submits
-    #success_url = '/test/'
+
+    # when new test form submitted assign it to the logged in user
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 # CBV to update test
 class TestUpdate(UpdateView):
@@ -61,3 +64,8 @@ def add_sub(request, test_id):
         new_sub.test_id = test_id
         new_sub.save()
     return redirect ('detail', test_id=test_id)
+
+
+
+    # use code below to return user to a specific url after form submits
+    #success_url = '/test/'
