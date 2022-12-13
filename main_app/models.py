@@ -20,10 +20,10 @@ TYPES = (
 )
 
 class Enclosure(models.Model):
-    name = models.CharField(max_length=100,)
+    name = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     type = models.CharField(
-        max_length=1,
+        max_length=5,
         choices=TYPES,
         default=TYPES[6][0],
     )
