@@ -20,12 +20,22 @@ TYPES = (
 )
 
 class Enclosure(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=250)
+    name = models.CharField(
+        label='Name of Enclosure', 
+        max_length=100,
+        required=True,
+    )
+    description = models.TextField(
+        label='Description', 
+        max_length=250,
+        required=False,
+    )
     type = models.CharField(
+        label='Type of Enclosure',
         max_length=1,
         choices=TYPES,
-        default=TYPES[6][0]
+        default=TYPES[6][0],
+        required=True,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -37,18 +47,30 @@ class Enclosure(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'test_id': self.id})
 
-    # Meta class with ordering dictates what order the data will be queried in
-    class Meta:
-        ordering = ['number']
 
 class Animal(models.Model):
-    given_name = models.CharField(max_length=250)
-    common_name = models.CharField(max_length=250)
-    scientific_name = models.CharField(max_length=250)
-    num_ind = models.IntegerField()
+    given_name = models.CharField(
+        label='Given Name (ex: Rex)',
+        max_length=250,
+        required=False,
+    )
+    common_name = models.CharField(
+        label='Common Name (ex: Goldfish)',
+        max_length=250,
+        required=True,
+    )
+    scientific_name = models.CharField(
+        label='Scientific Name (ex: Carassius auratus)',
+        max_length=250,
+        required=False
+    )
+    num_ind = models.IntegerField(
+        label='If this animal entry represents a group, how many individuals are in this group?',
+        required=False
+        )
 
-    # Create foreign key for Test
-    # on_delete: when a Test is deleted, all of its children will also be deleted
+    # Create foreign key for Enclosure
+    # on_delete: when an enclosure is deleted, all of its children will also be deleted
     enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
 
     # class Meta:

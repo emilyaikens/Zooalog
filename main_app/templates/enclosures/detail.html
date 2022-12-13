@@ -3,34 +3,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Test Details</h1>
+<h1>Enclosure Details</h1>
 
-<!-- Test details -->
+<!-- Enclosure details -->
 <div class="card">
     <div class="card-content">
-        <span class="card-title">{{ test.name }}</span>
+        <span class="card-title">{{ enclosure.name }}</span>
         <p>Description: {{ test.description|linebreaks }}</p>
-        {% if test.number > 5 %}
-            <p>Large: {{ test.number }}</p>
-        {% else %}
-            <p>Small: {{ test.number }}</p>
-        {% endif %}
+        <p>Type: {{ enclosure.type }}</p>
         <div class="card-action">
-            <a href="{% url 'test_update' test.id %}">Edit</a>
-            <a href="{% url 'test_delete' test.id %}">Delete</a>
+            <a href="{% url 'enclosure_update' enclosure.id %}">Edit</a>
+            <a href="{% url 'enclosure_delete' enclosure.id %}">Delete</a>
         </div>
     </div>
 </div>
 
-<!-- Form for new sub -->
+<!-- Form for new animal -->
 <div class="card">
     <div class="card-content">
-        <form action="{% url 'add_sub' test.id %}" method="POST">
+        <form action="{% url 'add_animal' enclosure.id %}" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
             {{ sub_form.as_p }}
             <br>
-            <input type="submit" class="btn teal darken-4" value="Add Sub">
+            <input type="submit" class="btn teal darken-4" value="Add Animal">
         </form>
     </div>
 </div>
