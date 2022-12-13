@@ -39,7 +39,7 @@ def enclosure_index(request):
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     animal_form = AnimalForm()
-    return render(request, 'enclosure/detail.html', { 'enclosure': enclosure, 'animal_form': animal_form})
+    return render(request, 'enclosures/detail.html', { 'enclosure': enclosure, 'animal_form': animal_form})
 
 # CBV to create new test
 class EnclosureCreate(LoginRequiredMixin, CreateView):
