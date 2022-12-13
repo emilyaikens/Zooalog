@@ -45,7 +45,7 @@ class Enclosure(models.Model):
 
     # reverse will return the correct path for the detail named route by attaching id
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'test_id': self.id})
+        return reverse('detail', kwargs={'enclosure_id': self.id})
 
 
 class Animal(models.Model):
@@ -65,13 +65,15 @@ class Animal(models.Model):
         required=False
     )
     num_ind = models.IntegerField(
-        label='If this animal entry represents a group, how many individuals are in this group?',
-        required=False
-        )
+        label='How many?',
+        required=True
+    )
 
     # Create foreign key for Enclosure
     # on_delete: when an enclosure is deleted, all of its children will also be deleted
     enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
     # class Meta:
     #     ordering = ['-date']

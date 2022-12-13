@@ -31,18 +31,25 @@
     </div>
 </div>
 
-<!-- Sub details for this Test -->
+<!-- Animal details for this Enclosure -->
 <div class="card">
     <div class="card-content">
         <table class="striped">
             <thead>
-                <tr><th>Date</th><th>Description</th></tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Common Name</th>
+                    <th>Scientific Name</th>
+                    <th>Number</th>
+                </tr>
             </thead>
             <tbody>
-                {% for sub in test.sub_set.all %}
+                {% for animal in animals %}
                 <tr>
-                    <td>{{sub.date}}</td>
-                    <td>{{sub.description}}</td>
+                    <td>{{animal.given_name}}</td>
+                    <td>{{animal.common_name}}</td>
+                    <td>{{animal.scientific_name}}</td>
+                    <td>{{animal.num_ind}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -60,6 +67,9 @@
     setDefaultDate: true,
     autoClose: true
     });
+
+    const selectEl = document.getElementById('id_type');
+    M.FormSelect.init(selectEl);
 </script>
 
 {% endblock %}
