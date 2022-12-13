@@ -54,7 +54,7 @@ class EnclosureCreate(CreateView):
 # CBV to update test
 class EnclosureUpdate(UpdateView):
     model = Enclosure
-    fields = '__all__'
+    fields = ['name', 'description', 'type']
 
 # CBV to delete test
 class EnclosureDelete(DeleteView):
