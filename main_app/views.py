@@ -42,9 +42,9 @@ def enclosure_detail(request, enclosure_id):
     return render(request, 'enclosures/detail.html', { 'enclosure': enclosure, 'animal_form': animal_form})
 
 # CBV to create new test
-class EnclosureCreate(LoginRequiredMixin, CreateView):
+class EnclosureCreate(CreateView):
     model = Enclosure
-    fields = '__all__'
+    fields = ['name', 'description', 'type']
 
     # when new test form submitted assign it to the logged in user
     def form_valid(self, form):
