@@ -42,7 +42,7 @@ class Animal(models.Model):
     given_name = models.CharField(max_length=250)
     common_name = models.CharField(max_length=250)
     scientific_name = models.CharField(max_length=250)
-    num_ind = models.IntegerField(required=True)
+    num_ind = models.IntegerField()
 
     # Create foreign key for Enclosure
     # on_delete: when an enclosure is deleted, all of its children will also be deleted
