@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Test, Sub
+from .models import Enclosure, Animal
 
 # Models registered here
-admin.site.register(Test)
-admin.site.register(Sub)
+admin.site.register(Enclosure)
+admin.site.register(Animal)
