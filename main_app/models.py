@@ -9,10 +9,24 @@ from django.urls import reverse
 from datetime import date
 from django.contrib.auth.models import User
 
-class Test(models.Model):
+TYPES = (
+    'Tropical Freshwater',
+    'Temperate Freshwater',
+    'Tropical Marine',
+    'Temparate Marine',
+    'Terrarium',
+    'Enclosure',
+    'Other',
+)
+
+class Enclosure(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
-    number = models.IntegerField()
+    type = models.CharField(
+        max_length=1,
+        choices=TYPES,
+        default=TYPES[6][0]
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # returns string representation of the model object
@@ -27,13 +41,15 @@ class Test(models.Model):
     class Meta:
         ordering = ['number']
 
-class Sub(models.Model):
-    date = models.DateField()
-    description = models.TextField(max_length=250)
+class Animal(models.Model):
+    given_name = models.CharField(max_length=250)
+    common_name = models.CharField(max_length=250)
+    scientific_name = models.CharField(max_length=250)
+    num_ind = models.IntegerField()
 
     # Create foreign key for Test
     # on_delete: when a Test is deleted, all of its children will also be deleted
-    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
 
-    class Meta:
-        ordering = ['-date']
+    # class Meta:
+    #     ordering = ['-date']
