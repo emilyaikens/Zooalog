@@ -10,13 +10,13 @@ from datetime import date
 from django.contrib.auth.models import User
 
 TYPES = (
-    'Tropical Freshwater',
-    'Temperate Freshwater',
-    'Tropical Marine',
-    'Temparate Marine',
-    'Terrarium',
-    'Enclosure',
-    'Other',
+    ('TropF','Tropical Freshwater'),
+    ('TempF','Temperate Freshwater'),
+    ('TropM','Tropical Marine'),
+    ('TempM','Temparate Marine'),
+    ('Ter','Terrarium'),
+    ('E','Enclosure'),
+    ('O','Other'),
 )
 
 class Enclosure(models.Model):
