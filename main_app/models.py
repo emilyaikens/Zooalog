@@ -20,22 +20,12 @@ TYPES = (
 )
 
 class Enclosure(models.Model):
-    name = models.CharField(
-        label='Name of Enclosure', 
-        max_length=100,
-        required=True,
-    )
-    description = models.TextField(
-        label='Description', 
-        max_length=250,
-        required=False,
-    )
+    name = models.CharField(max_length=100,)
+    description = models.TextField(max_length=250)
     type = models.CharField(
-        label='Type of Enclosure',
         max_length=1,
         choices=TYPES,
         default=TYPES[6][0],
-        required=True,
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -49,25 +39,10 @@ class Enclosure(models.Model):
 
 
 class Animal(models.Model):
-    given_name = models.CharField(
-        label='Given Name (ex: Rex)',
-        max_length=250,
-        required=False,
-    )
-    common_name = models.CharField(
-        label='Common Name (ex: Goldfish)',
-        max_length=250,
-        required=True,
-    )
-    scientific_name = models.CharField(
-        label='Scientific Name (ex: Carassius auratus)',
-        max_length=250,
-        required=False
-    )
-    num_ind = models.IntegerField(
-        label='How many?',
-        required=True
-    )
+    given_name = models.CharField(max_length=250)
+    common_name = models.CharField(max_length=250)
+    scientific_name = models.CharField(max_length=250)
+    num_ind = models.IntegerField(required=True)
 
     # Create foreign key for Enclosure
     # on_delete: when an enclosure is deleted, all of its children will also be deleted
