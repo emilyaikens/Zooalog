@@ -32,6 +32,7 @@
                         <th>Common Name</th>
                         <th>Scientific Name</th>
                         <th>Quantity</th>
+                        <th>&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,7 @@
                         <td>{{animal.common_name}}</td>
                         <td>{{animal.scientific_name}}</td>
                         <td>{{animal.quantity}}</td>
+                        <td><a href="{% url 'update_animal' animal.id %}">Edit</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
