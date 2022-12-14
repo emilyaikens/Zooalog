@@ -72,7 +72,7 @@ def create_animal(request, enclosure_id):
     form = AnimalForm(request.POST)
     # Validate the form
     if form.is_valid:
-        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+        #commit=False returns an in-memory model object that we can assign to enclosure_id before saving to the database
         new_animal = form.save(commit=False)
         new_animal.enclosure_id = enclosure_id
         new_animal.save()
@@ -81,7 +81,18 @@ def create_animal(request, enclosure_id):
 # Update animal
 def update_animal(request, animal_id):
     animal = Animal.objects.get(id=animal_id)
-    animal_form = AnimalForm(instance=animal)
+    enclosure_id = animal.enclosure_id
+
+    if request.method == 'POST':
+        animal_form = AnimalForm(request.POST, instance=animal)
+        if animal_form.is_valid():
+            form = animal_form.save(commit=False)
+            form.enclosure_id = enclosure_id
+            form.save()
+            return redirect ('detail', enclosure_id)
+    else:
+        animal_form = AnimalForm(instance=animal)
+    
     return render(request, 'animals/update_animal.html', {'animal_form': animal_form})
 
 # Route to create parameter page
