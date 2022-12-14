@@ -13,7 +13,8 @@ urlpatterns = [
     path('enclosures/create/', views.EnclosureCreate.as_view(), name='enclosure_create'),
     path('enclosures/<int:pk>/update/', views.EnclosureUpdate.as_view(), name="enclosure_update"),
     path('enclosures/<int:pk>/delete/', views.EnclosureDelete.as_view(), name="enclosure_delete"), 
-    path('enclosures/<int:enclosure_id>/add_animal/', views.add_animal, name='add_animal'),
+    path('animals/<int:enclosure_id>/add', views.add_animal, name='add_animal'),
+    # ('enclosures/<int:enclosure_id>/add_animal/', views.add_animal, name='add_animal'),
     path('accounts/signup', views.signup, name='signup'),
     ]
     
