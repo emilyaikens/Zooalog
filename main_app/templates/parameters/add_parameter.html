@@ -17,7 +17,7 @@
 <!-- Form for new parameter -->
 <div class="card">
     <div class="card-content">
-        <form action="" method="POST">
+        <form action="{% url 'create_parameter' enclosure.id %}" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
             <table>
