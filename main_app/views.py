@@ -85,6 +85,11 @@ def add_parameter(request, enclosure_id):
     parameter_form = ParameterForm()
     return render(request, 'parameters/add_parameter.html', { 'enclosure': enclosure, 'parameter_form': parameter_form})
 
+# Define the parameter info view
+def parameter_info(request):
+    return render(request, 'parameters/info.html')
+
+# Create new User
 def signup(request):
     err_msg = ''
     if request.method == 'POST':
