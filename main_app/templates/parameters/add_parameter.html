@@ -1,0 +1,23 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Add Parameter to {{ enclosure.name }}</h1>
+
+<!-- Form for new parameter -->
+<div class="card">
+    <div class="card-content">
+        <form action="" method="POST">
+            <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
+            {% csrf_token %}
+            <table>
+                {{ parameter_form.as_table }}
+            </table>
+            <br>
+            <input type="submit" class="btn teal darken-4" value="Add Animal">
+        </form>
+    </div>
+</div>
+<!-- {% url 'create_parameter' enclosure.id %} -->
+{% endblock %}
