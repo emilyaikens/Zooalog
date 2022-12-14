@@ -5,21 +5,21 @@
 
 <h1>My Enclosures</h1>
 <hr />
-{% if enclosure %}
-    {% for enclosure in enclosure %}
-    <a href="{% url 'detail' enclosure.id%}">
-    <div class="card">
-        <div class="card-content teal-text text-darken-4">
-            <span class="card-title">{{ enclosure.name }}</span>
-            <p>Description: {{ enclosure.description|linebreaks }}</p>
-            <p>Type: {{ enclosure.type }}</p>
+{% for enclosure in enclosures %}
+    {% if enclosure %}
+        <a href="{% url 'detail' enclosure.id%}">
+        <div class="card">
+            <div class="card-content teal-text text-darken-4">
+                <span class="card-title">{{ enclosure.name }}</span>
+                <p>Description: {{ enclosure.description|linebreaks }}</p>
+                <p>Type: {{ enclosure.type }}</p>
+            </div>
         </div>
-    </div>
-    </a>
-    {% endfor %}
-{% else %}
-    <p>You have no enclosures yet</p>
-    <a href="{% url 'enclosure_create' %}"><button class="btn teal darken-4">Add Enclosure</button></a>
-{% endif %}
+        </a>
+    {% else %}
+        <p>You have no enclosures yet</p>
+        <a href="{% url 'enclosure_create' %}"><button class="btn teal darken-4">Add Enclosure</button></a>
+    {% endif %}
+{% endfor %}
 
 {% endblock %}
