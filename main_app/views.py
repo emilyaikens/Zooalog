@@ -68,16 +68,16 @@ def add_animal(request, enclosure_id):
     animal_form = AnimalForm()
     return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
 
-# def add_animal(request, enclosure_id):
-#     #create SubForm instatnce using data in request.POST
-#     form = AnimalForm(request.POST)
-#     # Validate the form
-#     if form.is_valid:
-#         #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
-#         new_animal = form.save(commit=False)
-#         new_animal.enclosure_id = enclosure_id
-#         new_animal.save()
-#     return redirect ('detail', enclosure_id=enclosure_id)
+def create_animal(request, enclosure_id):
+    #create SubForm instance using data in request.POST
+    form = AnimalForm(request.POST)
+    # Validate the form
+    if form.is_valid:
+        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+        new_animal = form.save(commit=False)
+        new_animal.enclosure_id = enclosure_id
+        new_animal.save()
+    return redirect ('detail', enclosure_id=enclosure_id)
 
 def signup(request):
     err_msg = ''
