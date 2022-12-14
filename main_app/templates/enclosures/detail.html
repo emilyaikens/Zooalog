@@ -8,9 +8,9 @@
 <!-- Enclosure details -->
 <div class="card">
     <div class="card-content">
-        <span class="card-title">{{ enclosure.name }}</span>
-        <p>Description: {{ test.description|linebreaks }}</p>
-        <p>Type: {{ enclosure.type }}</p>
+        <span class="card-title title">{{ enclosure.name }}</span>
+        <p>Type: {{ enclosure.get_type_display }}</p>
+        <p>Description: {{ enclosure.description|linebreaks }}</p>
         <div class="card-action">
             <a href="{% url 'enclosure_update' enclosure.id %}">Edit</a>
             <a href="{% url 'enclosure_delete' enclosure.id %}">Delete</a>
@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for animal in animal %}
+                {% for animal in enclosure.animal_set.all %}
                 <tr>
                     <td>{{animal.given_name}}</td>
                     <td>{{animal.common_name}}</td>
