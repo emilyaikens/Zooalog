@@ -38,8 +38,7 @@ def enclosure_index(request):
 # Define the enclosure detail view
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
-    animal_form = AnimalForm()
-    return render(request, 'enclosures/detail.html', { 'enclosure': enclosure, 'animal_form': animal_form})
+    return render(request, 'enclosures/detail.html', { 'enclosure': enclosure })
 
 # CBV to create new enclosure
 class EnclosureCreate(CreateView):

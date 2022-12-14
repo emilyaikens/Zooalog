@@ -50,8 +50,41 @@
 <!-- Add animal -->
 <a href="{% url 'add_animal' enclosure.id %}"><button class="btn teal darken-4">Add Animal</button></a>
 
+<!-- Parameter details for this Enclosure -->
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header">Click here to see parameters assigned to this enclosure</div>
+        <div class="collapsible-body">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Units</th>
+                        <th>Ideal range</th>
+                        <th>Frequency</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for param in enclosure.parameter_set.all %}
+                    <tr>
+                        <td>{{ param.parameter }}</td>
+                        <td>{{ param.units }}</td>
+                        <td>{{ param.ideal_range }}</td>
+                        <td>{{ param.frequency }}</td>
+                        <td>{{ param.notes }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </li>
+</ul>
+
 <!-- Add parameter -->
 <a href="{% url 'add_parameter' enclosure.id %}"><button class="btn teal darken-4">Add Parameter</button></a>
+
+<br/>
 
 <!-- Activate accordion materialize element -->
 <script>
