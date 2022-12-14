@@ -72,7 +72,7 @@ def create_animal(request, enclosure_id):
     form = AnimalForm(request.POST)
     # Validate the form
     if form.is_valid:
-        #commit=False returns an in-memory model object that we can assign to enclosure_id before saving to the database
+        #commit=False returns an in-memory model object assigned to enclosure_id before saving to the database
         new_animal = form.save(commit=False)
         new_animal.enclosure_id = enclosure_id
         new_animal.save()
@@ -86,6 +86,7 @@ def update_animal(request, animal_id):
     if request.method == 'POST':
         animal_form = AnimalForm(request.POST, instance=animal)
         if animal_form.is_valid():
+            #commit=False returns an in-memory model object assigned to enclosure_id before saving to the database
             form = animal_form.save(commit=False)
             form.enclosure_id = enclosure_id
             form.save()
