@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Enclosure, Animal
+from .models import Enclosure, Animal, Parameter
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import AnimalForm, ParameterForm
 from django.contrib.auth import login

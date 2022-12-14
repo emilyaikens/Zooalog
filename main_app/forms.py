@@ -13,7 +13,7 @@ class AnimalForm(ModelForm):
 
 class ParameterForm(ModelForm):
     class Meta:
-        model: Parameter
+        model = Parameter
         fields = [
             'parameter',
             'units',
