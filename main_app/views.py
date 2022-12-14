@@ -29,41 +29,47 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-# Define the test view
+# Define the enclosure view
 def enclosure_index(request):
     # retrieve all tests from db and save to variable tests
     enclosures = Enclosure.objects.filter(user=request.user)
     return render(request, 'enclosures/index.html', { 'enclosures': enclosures })
 
-# Define the test detail view
+# Define the enclosure detail view
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     animal_form = AnimalForm()
     return render(request, 'enclosures/detail.html', { 'enclosure': enclosure, 'animal_form': animal_form})
 
-# CBV to create new test
+# CBV to create new enclosure
 class EnclosureCreate(CreateView):
     model = Enclosure
     fields = ['name', 'description', 'type']
 
-    # when new test form submitted assign it to the logged in user
+    # when new enclosure form submitted assign it to the logged in user
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
-# CBV to update test
+# CBV to update enclosure
 class EnclosureUpdate(UpdateView):
     model = Enclosure
     fields = ['name', 'description', 'type']
 
-# CBV to delete test
+# CBV to delete enclosure
 class EnclosureDelete(DeleteView):
     model = Enclosure
-    # Must redirect after deletion because test will no longer exist
+    # Must redirect after deletion because enclosure will no longer exist
     success_url = '/enclosures/'
 
+# Define the enclosure detail view
 def add_animal(request, enclosure_id):
-    #create SubForm instatnce using data in request.POST
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    animal_form = AnimalForm()
+    return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
+
+def create_animal(request, enclosure_id):
+    #create SubForm instance using data in request.POST
     form = AnimalForm(request.POST)
     # Validate the form
     if form.is_valid:
