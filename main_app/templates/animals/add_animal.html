@@ -3,12 +3,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Add Animal</h1>
+<h1>Add Animal to {{ enclosure.name }}</h1>
 
 <!-- Form for new animal -->
 <div class="card">
     <div class="card-content">
-        <h5>Add Animal to Enclosure</h5>
         <form action="{% url 'create_animal' enclosure.id %}" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
