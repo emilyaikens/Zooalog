@@ -14,7 +14,6 @@
     <title>Zooalog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <!-- Below: Materialize JS library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
@@ -29,8 +28,8 @@
                 {% else %}
                 {% endif %}
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'index' %}">Test</a></li>
-                <li><a href="{% url 'test_create' %}">Add Test</a></li>
+                <li><a href="{% url 'index' %}">Enclosures</a></li>
+                <li><a href="{% url 'enclosure_create' %}">Add Enclosure</a></li>
                 <li><a href="{% url 'signup' %}">Sign Up</a></li>
                 <li><a href="{% url 'login' %}">Log In</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>

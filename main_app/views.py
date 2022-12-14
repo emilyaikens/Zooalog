@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Test
+from .models import Enclosure, Animal
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import SubForm
+from .forms import AnimalForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -30,21 +30,21 @@ def about(request):
     return render(request, 'about.html')
 
 # Define the test view
-def test_index(request):
+def enclosure_index(request):
     # retrieve all tests from db and save to variable tests
-    tests = Test.objects.filter(user=request.user)
-    return render(request, 'test/index.html', { 'tests': tests })
+    enclosures = Enclosure.objects.filter(user=request.user)
+    return render(request, 'enclosures/index.html', { 'enclosures': enclosures })
 
 # Define the test detail view
-def test_detail(request, test_id):
-    test = Test.objects.get(id=test_id)
-    sub_form = SubForm()
-    return render(request, 'test/detail.html', { 'test': test, 'sub_form': sub_form})
+def enclosure_detail(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    animal_form = AnimalForm()
+    return render(request, 'enclosures/detail.html', { 'enclosure': enclosure, 'animal_form': animal_form})
 
 # CBV to create new test
-class TestCreate(LoginRequiredMixin, CreateView):
-    model = Test
-    fields = '__all__'
+class EnclosureCreate(CreateView):
+    model = Enclosure
+    fields = ['name', 'description', 'type']
 
     # when new test form submitted assign it to the logged in user
     def form_valid(self, form):
@@ -52,26 +52,26 @@ class TestCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 # CBV to update test
-class TestUpdate(UpdateView):
-    model = Test
-    fields = '__all__'
+class EnclosureUpdate(UpdateView):
+    model = Enclosure
+    fields = ['name', 'description', 'type']
 
 # CBV to delete test
-class TestDelete(DeleteView):
-    model = Test
+class EnclosureDelete(DeleteView):
+    model = Enclosure
     # Must redirect after deletion because test will no longer exist
-    success_url = '/test/'
+    success_url = '/enclosures/'
 
-def add_sub(request, test_id):
+def add_animal(request, enclosure_id):
     #create SubForm instatnce using data in request.POST
-    form = SubForm(request.POST)
+    form = AnimalForm(request.POST)
     # Validate the form
     if form.is_valid:
         #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
-        new_sub = form.save(commit=False)
-        new_sub.test_id = test_id
-        new_sub.save()
-    return redirect ('detail', test_id=test_id)
+        new_animal = form.save(commit=False)
+        new_animal.enclosure_id = enclosure_id
+        new_animal.save()
+    return redirect ('detail', enclosure_id=enclosure_id)
 
 def signup(request):
     err_msg = ''

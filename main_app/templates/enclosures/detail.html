@@ -1,0 +1,63 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Enclosure Details</h1>
+
+<!-- Enclosure details -->
+<div class="card">
+    <div class="card-content">
+        <span class="card-title title">{{ enclosure.name }}</span>
+        <p>Type: {{ enclosure.get_type_display }}</p>
+        <p>Description: {{ enclosure.description|linebreaks }}</p>
+        <div class="card-action">
+            <a href="{% url 'enclosure_update' enclosure.id %}">Edit</a>
+            <a href="{% url 'enclosure_delete' enclosure.id %}">Delete</a>
+        </div>
+    </div>
+</div>
+
+<!-- Animal details for this Enclosure -->
+<div class="card">
+    <div class="card-content">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Given Name</th>
+                    <th>Common Name</th>
+                    <th>Scientific Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for animal in enclosure.animal_set.all %}
+                <tr>
+                    <td>{{animal.given_name}}</td>
+                    <td>{{animal.common_name}}</td>
+                    <td>{{animal.scientific_name}}</td>
+                    <td>{{animal.quantity}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Form for new animal -->
+<div class="card">
+    <div class="card-content">
+        <h5>Add Animal to Enclosure</h5>
+        <form action="{% url 'add_animal' enclosure.id %}" method="POST">
+            <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
+            {% csrf_token %}
+            <table>
+                {{ animal_form.as_table }}
+            </table>
+            <br>
+            <input type="submit" class="btn teal darken-4" value="Add Animal">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

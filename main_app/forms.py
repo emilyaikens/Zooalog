@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import Sub
+from .models import Animal
 
-class SubForm(ModelForm):
+class AnimalForm(ModelForm):
     class Meta:
-        model = Sub
-        fields = ['date', 'description']
+        model = Animal
+        fields = ['given_name', 'common_name', 'scientific_name', 'quantity']

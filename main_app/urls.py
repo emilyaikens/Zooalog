@@ -8,12 +8,12 @@ from . import views
 urlpatterns = [
     path('', views.home, name="home"),
     path('about', views.about, name="about"),
-    path('test/', views.test_index, name='index'),
-    path('test/<int:test_id>/', views.test_detail, name='detail'),
-    path('test/create/', views.TestCreate.as_view(), name='test_create'),
-    path('test/<int:pk>/update/', views.TestUpdate.as_view(), name="test_update"),
-    path('test/<int:pk>/delete/', views.TestDelete.as_view(), name="test_delete"), 
-    path('test/<int:test_id>/add_sub/', views.add_sub, name='add_sub'),
+    path('enclosures/', views.enclosure_index, name='index'),
+    path('enclosures/<int:enclosure_id>/', views.enclosure_detail, name='detail'),
+    path('enclosures/create/', views.EnclosureCreate.as_view(), name='enclosure_create'),
+    path('enclosures/<int:pk>/update/', views.EnclosureUpdate.as_view(), name="enclosure_update"),
+    path('enclosures/<int:pk>/delete/', views.EnclosureDelete.as_view(), name="enclosure_delete"), 
+    path('enclosures/<int:enclosure_id>/add_animal/', views.add_animal, name='add_animal'),
     path('accounts/signup', views.signup, name='signup'),
     ]
     
