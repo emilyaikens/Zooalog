@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Enclosure, Animal
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import AnimalForm
+from .forms import AnimalForm, ParameterForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -62,7 +62,7 @@ class EnclosureDelete(DeleteView):
     # Must redirect after deletion because enclosure will no longer exist
     success_url = '/enclosures/'
 
-# Define the enclosure detail view
+# Route to create animal form page
 def add_animal(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     animal_form = AnimalForm()
@@ -78,6 +78,12 @@ def create_animal(request, enclosure_id):
         new_animal.enclosure_id = enclosure_id
         new_animal.save()
     return redirect ('detail', enclosure_id=enclosure_id)
+
+# Route to create parameter page
+def add_parameter(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    parameter_form = ParameterForm()
+    return render(request, 'parameters/add_parameter.html', { 'enclosure': enclosure, 'parameter_form': parameter_form})
 
 def signup(request):
     err_msg = ''
