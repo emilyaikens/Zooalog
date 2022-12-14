@@ -78,6 +78,12 @@ def create_animal(request, enclosure_id):
         new_animal.save()
     return redirect ('detail', enclosure_id=enclosure_id)
 
+# Update animal
+def update_animal(request, animal_id):
+    animal = Animal.objects.get(id=animal_id)
+    animal_form = AnimalForm(instance=animal)
+    return render(request, 'animals/update_animal.html', {'animal_form': animal_form})
+
 # Route to create parameter page
 def add_parameter(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
