@@ -134,7 +134,7 @@ USE_TZ = True
 
 STATIC_URL = '/main_app/static/'
 
-LOGIN_REDIRECT_URL = '/test/'
+LOGIN_REDIRECT_URL = '/enclosures/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
