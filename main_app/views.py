@@ -89,6 +89,17 @@ def add_parameter(request, enclosure_id):
 def parameter_info(request):
     return render(request, 'parameters/info.html')
 
+def create_parameter(request, enclosure_id):
+    #create SubForm instance using data in request.POST
+    form = ParameterForm(request.POST)
+    # Validate the form
+    if form.is_valid:
+        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+        new_parameter = form.save(commit=False)
+        new_parameter.enclosure_id = enclosure_id
+        new_parameter.save()
+    return redirect ('detail', enclosure_id=enclosure_id)
+
 # Create new User
 def signup(request):
     err_msg = ''
