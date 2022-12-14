@@ -15,6 +15,7 @@ urlpatterns = [
     path('enclosures/<int:pk>/delete/', views.EnclosureDelete.as_view(), name="enclosure_delete"), 
     path('animals/<int:enclosure_id>/add_animal', views.add_animal, name='add_animal'),
     path('animals/<int:enclosure_id>/create_animal/', views.create_animal, name='create_animal'),
+    path('parameters/<int:enclosure_id>/add_parameter', views.add_parameter, name='add_parameter'),
     path('accounts/signup', views.signup, name='signup'),
     ]
     
