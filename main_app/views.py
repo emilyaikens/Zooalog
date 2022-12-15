@@ -26,9 +26,11 @@ from django.urls import reverse
 def home(request):
     return render(request, 'home.html')
 
+
 # Define the about view
 def about(request):
     return render(request, 'about.html')
+
 
 # Define the enclosure view
 def enclosure_index(request):
@@ -36,10 +38,12 @@ def enclosure_index(request):
     enclosures = Enclosure.objects.filter(user=request.user)
     return render(request, 'enclosures/index.html', { 'enclosures': enclosures })
 
+
 # Define the enclosure detail view
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     return render(request, 'enclosures/detail.html', { 'enclosure': enclosure })
+
 
 # CBV to create new enclosure
 class EnclosureCreate(CreateView):
@@ -51,10 +55,12 @@ class EnclosureCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+
 # CBV to update enclosure
 class EnclosureUpdate(UpdateView):
     model = Enclosure
     fields = ['name', 'description', 'type']
+
 
 # CBV to delete enclosure
 class EnclosureDelete(DeleteView):
@@ -62,11 +68,13 @@ class EnclosureDelete(DeleteView):
     # Must redirect after deletion because enclosure will no longer exist
     success_url = '/enclosures/'
 
+
 # Route to create animal form page
 def add_animal(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     animal_form = AnimalForm()
     return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
+
 
 def create_animal(request, enclosure_id):
     #create SubForm instance using data in request.POST
@@ -78,6 +86,7 @@ def create_animal(request, enclosure_id):
         new_animal.enclosure_id = enclosure_id
         new_animal.save()
     return redirect ('detail', enclosure_id=enclosure_id)
+
 
 # Update animal
 def update_animal(request, animal_id):
@@ -97,7 +106,8 @@ def update_animal(request, animal_id):
     
     return render(request, 'animals/update_animal.html', {'animal_form': animal_form})
 
-# CBV to delete enclosure
+
+# CBV to delete animal
 class AnimalDelete(DeleteView):
     model = Animal
     # Must redirect after deletion because enclosure will no longer exist
@@ -106,15 +116,18 @@ class AnimalDelete(DeleteView):
         enclosure_id = self.object.enclosure_id
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
+
 # Route to create parameter page
 def add_parameter(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     parameter_form = ParameterForm()
     return render(request, 'parameters/add_parameter.html', { 'enclosure': enclosure, 'parameter_form': parameter_form})
 
+
 # Define the parameter info view
 def parameter_info(request):
     return render(request, 'parameters/info.html')
+
 
 def create_parameter(request, enclosure_id):
     #create SubForm instance using data in request.POST
@@ -126,6 +139,7 @@ def create_parameter(request, enclosure_id):
         new_parameter.enclosure_id = enclosure_id
         new_parameter.save()
     return redirect ('detail', enclosure_id=enclosure_id)
+
 
 # Update parameter
 def update_parameter(request, parameter_id):
@@ -144,6 +158,17 @@ def update_parameter(request, parameter_id):
         parameter_form = ParameterForm(instance=parameter)
     
     return render(request, 'parameters/update_parameter.html', {'parameter_form': parameter_form})
+
+
+# CBV to delete parameter
+class ParameterDelete(DeleteView):
+    model = Parameter
+    # Must redirect after deletion because enclosure will no longer exist
+    # Redirection involves capturing the enclosure_id from the parameter bc details requires id
+    def get_success_url(self):
+        enclosure_id = self.object.enclosure_id
+        return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
+
 
 # Create new User
 def signup(request):
