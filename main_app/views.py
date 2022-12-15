@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 # View functions must define a positional parameter to accept a request object
 # Third positional argument is a dictionary
@@ -95,6 +96,15 @@ def update_animal(request, animal_id):
         animal_form = AnimalForm(instance=animal)
     
     return render(request, 'animals/update_animal.html', {'animal_form': animal_form})
+
+# CBV to delete enclosure
+class AnimalDelete(DeleteView):
+    model = Animal
+    # Must redirect after deletion because enclosure will no longer exist
+    # Redirection involves capturing the enclosure_id from the animal bc details requires id
+    def get_success_url(self):
+        enclosure_id = self.object.enclosure_id
+        return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 # Route to create parameter page
 def add_parameter(request, enclosure_id):
