@@ -11,8 +11,8 @@ This app is enclosure-centric, meaning the user must create an Enclosure in orde
 ## Goals
 
 The three broad user stories this app achives are:
-1. AAU, I want to create new enclosures (Create)
-2. AAU, I want to view my existing enclosures (Read)
+1. AAU, I want to create new enclosures that have animals, parameters, diets and maintenance (Create)
+2. AAU, I want to view my existing enclosures and their depenencies (Read)
 3. AAU, I want to manage my existing enclosures (Update and Delete)
 
 Of course each of these can be broken down quite a bit, but these overaching user stories boil down to the idea that this app needs to be full CRUD.
@@ -58,6 +58,8 @@ Mockup for home page
 
 ## Progress Report
 
+* Dec 14, 2022: Add Parameters model. Complete CRUD for Animal and Parameters models. Create templates/parameters/info.html tables with information about commonly used parameters. 
+* Dec 13, 2022: Change Test model to Enclosure and change Sub model to Animal. Delete db and re-migrate. Move create animal form (previously create sub form) to its own page. 
 * Dec 11 2022: Set up user authentication and authorization. Signup, login, and logout functionality are all up and running.
 * Dec 8 2022: Implement full CRUD for Test. Form to create new Tests and ability to update and delete. Add Sub Model to models.py, migrate and can view. Form to create new Sub.
 * Dec 7 2022: Create Test model and migrate to postgreSQL. Set up templates (base.html, about.html, test/detail.html, test/index.html), set up some basic CSS, and config routes (urls.py and views.py) for each
