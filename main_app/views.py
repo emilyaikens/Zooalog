@@ -127,6 +127,24 @@ def create_parameter(request, enclosure_id):
         new_parameter.save()
     return redirect ('detail', enclosure_id=enclosure_id)
 
+# Update parameter
+def update_parameter(request, parameter_id):
+    parameter = Parameter.objects.get(id=parameter_id)
+    enclosure_id = parameter.enclosure_id
+
+    if request.method == 'POST':
+        parameter_form = ParameterForm(request.POST, instance=parameter)
+        if parameter_form.is_valid():
+            #commit=False returns an in-memory model object assigned to enclosure_id before saving to the database
+            form = parameter_form.save(commit=False)
+            form.enclosure_id = enclosure_id
+            form.save()
+            return redirect ('detail', enclosure_id)
+    else:
+        parameter_form = ParameterForm(instance=parameter)
+    
+    return render(request, 'parameters/update_parameter.html', {'parameter_form': parameter_form})
+
 # Create new User
 def signup(request):
     err_msg = ''
