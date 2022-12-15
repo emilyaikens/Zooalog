@@ -29,7 +29,7 @@
     <li>
         <div class="collapsible-header">Click here to see animals in this enclosure</div>
         <div class="collapsible-body">
-            <table class="striped">
+            <table class="striped responsive-table">
                 <thead>
                     <tr>
                         <th>Given Name</th>
@@ -75,7 +75,7 @@
     <li>
         <div class="collapsible-header">Click here to see parameters assigned to this enclosure</div>
         <div class="collapsible-body">
-            <table class="striped">
+            <table class="striped responsive-table">
                 <thead>
                     <tr>
                         <th>Parameter</th>
@@ -83,6 +83,8 @@
                         <th>Ideal range</th>
                         <th>Frequency</th>
                         <th>Notes</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +95,16 @@
                         <td>{{ param.ideal_range }}</td>
                         <td>{{ param.frequency }}</td>
                         <td>{{ param.notes }}</td>
+                        <td>
+                            <a href="{% url 'update_parameter' param.id %}">
+                                <button class="btn brown darken-2">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_parameter' param.id %}">
+                                <button class="btn amber accent-4 black-text">Delete</button>
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
