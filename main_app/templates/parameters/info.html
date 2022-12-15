@@ -1,0 +1,100 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Common Parameters</h1>
+
+<div class="card">
+    <div class="card-content">
+        <h4 class="card-title teal-text text-darken-4">Aquatic</h4>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Water Temperature</td>
+                    <td>&#8451 or &#8457</td>
+                </tr>
+                <tr>
+                    <td>pH (Acidity/Alkalinity)</td>
+                    <td>No Units</td>
+                </tr>
+                <tr>
+                    <td>NH<sub>3</sub> (Ammonia)</td>
+                    <td>ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>NO<sub>2</sub> (Nitrite)</td>
+                    <td>ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>NO<sub>3</sub> (Nitrate)</td>
+                    <td>ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>(KH) Carbonate Hardness</td>
+                    <td>dKH (degrees of KH) or ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>General Hardness (GH)</td>
+                    <td>dGH (degrees of GH) or ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>DO (Disolved Oxygen)</td>
+                    <td>ppm (parts per million) or mgL (milligrams per liter)</td>
+                </tr>
+                <tr>
+                    <td>PO<sub>4</sub> (Phosphate)</td>
+                    <td>ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>Calcium</td>
+                    <td>ppm (parts per million)</td>
+                </tr>
+                <tr>
+                    <td>Magnesium</td>
+                    <td>ppm (parts per million)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-content">
+        <h4 class="card-title teal-text text-darken-4">Terrestrial</h4>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Units</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Air Temperature</td>
+                    <td>&#8451 or &#8457</td>
+                </tr>
+                <tr>
+                    <td>Maximum Surface Temperature</td>
+                    <td>&#8451 or &#8457</td>
+                </tr>
+                <tr>
+                    <td>Minimum Surface Temperature</td>
+                    <td>&#8451 or &#8457</td>
+                </tr>
+                <tr>
+                    <td>Humidity</td>
+                    <td>% or gm<sup>3</sup></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

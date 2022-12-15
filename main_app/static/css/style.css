@@ -8,6 +8,10 @@ main {
     flex: 1 0 auto;
 }
 
+.bottom-space {
+    margin: 20px;
+}
+
 footer.page-footer {
     padding-top: 0;
     text-align: right;

@@ -12,24 +12,32 @@
         <p>Type: {{ enclosure.get_type_display }}</p>
         <p>Description: {{ enclosure.description|linebreaks }}</p>
         <div class="card-action">
-            <a href="{% url 'enclosure_update' enclosure.id %}">Edit</a>
-            <a href="{% url 'enclosure_delete' enclosure.id %}">Delete</a>
+            <a href="{% url 'enclosure_update' enclosure.id %}">
+                <button class="btn brown darken-2">Edit</button>
+            </a>
+            <a href="{% url 'enclosure_delete' enclosure.id %}">
+                <button class="btn amber accent-4 black-text">Delete</button>
+            </a>
         </div>
     </div>
 </div>
+
+<h4>Animals</h4>
 
 <!-- Animal details for this Enclosure -->
 <ul class="collapsible">
     <li>
         <div class="collapsible-header">Click here to see animals in this enclosure</div>
         <div class="collapsible-body">
-            <table class="striped">
+            <table class="striped responsive-table">
                 <thead>
                     <tr>
                         <th>Given Name</th>
                         <th>Common Name</th>
                         <th>Scientific Name</th>
                         <th>Quantity</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +47,16 @@
                         <td>{{animal.common_name}}</td>
                         <td>{{animal.scientific_name}}</td>
                         <td>{{animal.quantity}}</td>
+                        <td>
+                            <a href="{% url 'update_animal' animal.id %}">
+                                <button class="btn brown darken-2">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_animal' animal.id %}">
+                                <button class="btn amber accent-4 black-text">Delete</button>
+                            </a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -49,6 +67,56 @@
 
 <!-- Add animal -->
 <a href="{% url 'add_animal' enclosure.id %}"><button class="btn teal darken-4">Add Animal</button></a>
+
+<h4>Parameters</h4>
+
+<!-- Parameter details for this Enclosure -->
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header">Click here to see parameters assigned to this enclosure</div>
+        <div class="collapsible-body">
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Units</th>
+                        <th>Ideal range</th>
+                        <th>Frequency</th>
+                        <th>Notes</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for param in enclosure.parameter_set.all %}
+                    <tr>
+                        <td>{{ param.parameter }}</td>
+                        <td>{{ param.units }}</td>
+                        <td>{{ param.ideal_range }}</td>
+                        <td>{{ param.frequency }}</td>
+                        <td>{{ param.notes }}</td>
+                        <td>
+                            <a href="{% url 'update_parameter' param.id %}">
+                                <button class="btn brown darken-2">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_parameter' param.id %}">
+                                <button class="btn amber accent-4 black-text">Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </li>
+</ul>
+
+<!-- Add parameter -->
+<a href="{% url 'add_parameter' enclosure.id %}"><button class="btn teal darken-4">Add Parameter</button></a>
+
+<div class="bottom-space">&nbsp</div>
 
 <!-- Activate accordion materialize element -->
 <script>

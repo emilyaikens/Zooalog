@@ -1,0 +1,23 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Edit Animal</h1>
+
+<!-- Form for new animal -->
+<div class="card">
+    <div class="card-content">
+        <form action="" method="POST">
+            <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
+            {% csrf_token %}
+            <table>
+                {{ animal_form.as_table }}
+            </table>
+            <br>
+            <input type="submit" class="btn teal darken-4" value="Update">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
