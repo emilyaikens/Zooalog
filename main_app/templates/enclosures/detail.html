@@ -12,8 +12,12 @@
         <p>Type: {{ enclosure.get_type_display }}</p>
         <p>Description: {{ enclosure.description|linebreaks }}</p>
         <div class="card-action">
-            <a href="{% url 'enclosure_update' enclosure.id %}">Edit</a>
-            <a href="{% url 'enclosure_delete' enclosure.id %}">Delete</a>
+            <a href="{% url 'enclosure_update' enclosure.id %}">
+                <button class="btn brown darken-2">Edit</button>
+            </a>
+            <a href="{% url 'enclosure_delete' enclosure.id %}">
+                <button class="btn amber accent-4 black-text">Delete</button>
+            </a>
         </div>
     </div>
 </div>
@@ -33,6 +37,7 @@
                         <th>Scientific Name</th>
                         <th>Quantity</th>
                         <th>&nbsp</th>
+                        <th>&nbsp</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,8 +48,14 @@
                         <td>{{animal.scientific_name}}</td>
                         <td>{{animal.quantity}}</td>
                         <td>
-                            <a href="{% url 'update_animal' animal.id %}">Edit</a>
-                            <a href="{% url 'delete_animal' animal.id %}">Delete</a>
+                            <a href="{% url 'update_animal' animal.id %}">
+                                <button class="btn brown darken-2">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_animal' animal.id %}">
+                                <button class="btn amber accent-4 black-text">Delete</button>
+                            </a>
                         </td>
                     </tr>
                     {% endfor %}
