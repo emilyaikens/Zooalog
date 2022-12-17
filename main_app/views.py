@@ -170,15 +170,24 @@ class ParameterDelete(DeleteView):
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 
-# View log index
+# Render log index
 def log_index(request):
     return render(request, 'logs/log_index.html')
 
-# View enclosures for logs
+
+# Render enclosures for logs
 def log_enclosures(request):
     # retrieve all enclosures from db and save to variable tests
     enclosures = Enclosure.objects.filter(user=request.user)
     return render(request, 'logs/log_enclosures.html', { 'enclosures': enclosures })
+
+
+# Show all forms to log info for given enclosure
+def log_forms(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    # animal_form = AnimalForm()
+    # return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
+    pass 
 
 
 # Create new User
