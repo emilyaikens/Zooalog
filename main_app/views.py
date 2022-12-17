@@ -197,7 +197,7 @@ def log_forms(request, enclosure_id):
     
     param_form = ParameterLogForm(request=enclosure_id)
     param_form.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=enclosure_id)
-    return render(request, 'logs/log_forms.html', { 'enclosure': enclosure, 'param_form': param_form, 'enclosure_id':enclosure_id })
+    return render(request, 'logs/parameter_log_form.html', { 'enclosure': enclosure, 'param_form': param_form, 'enclosure_id':enclosure_id })
 
 
 # Create new User

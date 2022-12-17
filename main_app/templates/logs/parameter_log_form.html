@@ -3,9 +3,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ enclosure.name|capfirst }} Log Forms</h1>
+<h1>{{ enclosure.name|capfirst }} Parameter Log</h1>
 
-<a href="{% url 'log_enclosures' %}"><button class="btn teal darken-4"> < Back</button></a>
+<a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4"> < Back</button></a>
 
 <!-- Form for parameter log -->
 <h5>Log Parameters</h5>
@@ -21,7 +21,7 @@
             <input type="submit" class="btn teal darken-4" value="submit log and add another">
         </form>
         <br>
-        <a href="{% url 'log_enclosures' %}"><button class="btn teal darken-4">All done</button></a>
+        <a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4">All done</button></a>
     </div>
 </div>
 
