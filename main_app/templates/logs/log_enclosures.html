@@ -7,7 +7,7 @@
 <hr />
 {% for enclosure in enclosures %}
     {% if enclosure %}
-        <a href="">
+        <a href="{% url 'log_forms' enclosure.id %}">
             <div class="card">
                 <div class="card-content teal-text text-darken-4">
                     <b>{{ enclosure.name|capfirst }}</b> - {{ enclosure.description }}
