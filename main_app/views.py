@@ -170,6 +170,10 @@ class ParameterDelete(DeleteView):
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 
+# View log index
+def log_index(request):
+    return render(request, 'logs/log_index.html')
+
 # Create new User
 def signup(request):
     err_msg = ''
