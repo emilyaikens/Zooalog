@@ -195,11 +195,11 @@ def create_parameter_log(request, enclosure_id):
     #create ParameterLogForm instance using data in request.POST
     form = ParameterLogForm(request.POST, request=request)
     # Validate the form
-    # if form.is_valid:
-    #     #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
-    #     new_log = form.save(commit=False)
-    #     new_log.enclosure_id = enclosure_id
-    #     new_log.save()
+    if form.is_valid:
+        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+        new_log = form.save(commit=False)
+        new_log.parameter_id = Parameter.objects.get(enclosure_id=enclosure_id, parameter=request.parameter)
+        new_log.save()
     return redirect ('detail', enclosure_id=enclosure_id)
 
 # Create new User
