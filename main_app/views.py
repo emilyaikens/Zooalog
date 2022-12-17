@@ -174,6 +174,7 @@ class ParameterDelete(DeleteView):
 def log_index(request):
     return render(request, 'logs/log_index.html')
 
+
 # Create new User
 def signup(request):
     err_msg = ''
