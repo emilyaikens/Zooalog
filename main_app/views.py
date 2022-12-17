@@ -34,7 +34,7 @@ def about(request):
 
 # Define the enclosure view
 def enclosure_index(request):
-    # retrieve all tests from db and save to variable tests
+    # retrieve all enclosures from db and save to variable tests
     enclosures = Enclosure.objects.filter(user=request.user)
     return render(request, 'enclosures/index.html', { 'enclosures': enclosures })
 
@@ -173,6 +173,12 @@ class ParameterDelete(DeleteView):
 # View log index
 def log_index(request):
     return render(request, 'logs/log_index.html')
+
+# View enclosures for logs
+def log_enclosures(request):
+    # retrieve all enclosures from db and save to variable tests
+    enclosures = Enclosure.objects.filter(user=request.user)
+    return render(request, 'logs/log_enclosures.html', { 'enclosures': enclosures })
 
 
 # Create new User
