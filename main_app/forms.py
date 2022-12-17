@@ -48,5 +48,5 @@ class ParameterLogForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
         super(ParameterForm, self).__init__(*args, **kwargs)
-        self.fields['parameter'].queryset = Parameter.objects.filter(owner=self.request.user).values('parameter')
+        self.fields['parameter'].queryset = Parameter.objects.filter(user=self.request.user).values('parameter')
         self.fields['time'].required = False

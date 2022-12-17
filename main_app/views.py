@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Enclosure, Animal, Parameter
+from .models import Enclosure, Animal, Parameter, ParameterLog
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import AnimalForm, ParameterForm
+from .forms import AnimalForm, ParameterForm, ParameterLogForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -185,7 +185,8 @@ def log_enclosures(request):
 # Show all forms to log info for given enclosure
 def log_forms(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
-    # animal_form = AnimalForm()
+    param_form = ParameterLogForm()
+    param_form.fields['parameter'].queryset = Parameter.objects.filter(user=request.user)
     # return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
     pass 
 
