@@ -189,23 +189,16 @@ def log_forms(request, enclosure_id):
     if request.method == 'POST':
         form = ParameterLogForm(request.POST, request=enclosure_id)
         # Validate the form
-        if form.is_valid:
+        if form.is_valid():
             form.save()
-            return redirect ('detail', enclosure_id=enclosure_id)
+        else:
+            print("UNER HERE HERIOFUIDSF")
+            print(form.errors)
+    
     param_form = ParameterLogForm(request=enclosure_id)
     param_form.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=enclosure_id)
     return render(request, 'logs/log_forms.html', { 'enclosure': enclosure, 'param_form': param_form, 'enclosure_id':enclosure_id })
 
-
-# # Create new parameter log
-# def create_parameter_log(request, enclosure_id):
-#     #create ParameterLogForm instance using data in request.POST
-#     form = ParameterLogForm(request.POST, request=enclosure_id)
-#     # Validate the form
-#     if form.is_valid:
-#         form.save()
-#         return redirect ('detail', enclosure_id=enclosure_id)
-#     return redirect()
 
 # Create new User
 def signup(request):

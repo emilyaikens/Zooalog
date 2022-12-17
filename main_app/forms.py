@@ -50,4 +50,3 @@ class ParameterLogForm(ModelForm):
         self.request = kwargs.pop('request')
         super(ParameterLogForm, self).__init__(*args, **kwargs)
         self.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=self.request)
-        self.fields['time'].required = False

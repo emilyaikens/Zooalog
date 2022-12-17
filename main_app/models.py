@@ -10,11 +10,11 @@ from datetime import date, time
 from django.contrib.auth.models import User
 
 TYPES = (
-    ('TropF','Tropical Freshwater'),
-    ('TempF','Temperate Freshwater'),
-    ('TropM','Tropical Marine'),
-    ('TempM','Temparate Marine'),
-    ('Ter','Terrarium'),
+    ('TROPF','Tropical Freshwater'),
+    ('TEMPF','Temperate Freshwater'),
+    ('TROPM','Tropical Marine'),
+    ('TEMPM','Temparate Marine'),
+    ('TER','Terrarium'),
     ('E','Enclosure'),
     ('O','Other'),
 )
@@ -68,13 +68,12 @@ class Parameter(models.Model):
 
 
 class ParameterLog(models.Model):
-    date = models.DateField()
-    time = models.TimeField(blank = True)
-    value = models.CharField(max_length=250)
-
     # Create foreign key for Parameter
     # on_delete: when parameter is deleted, all of its children will also be deleted
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
+    value = models.CharField(max_length=250)
+    date = models.DateField()
+    time = models.CharField(max_length=200)
 
     # class Meta:
     #     ordering = ['-date']
