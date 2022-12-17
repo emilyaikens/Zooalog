@@ -24,8 +24,10 @@ urlpatterns = [
     path('parameters/<int:enclosure_id>/create_parameter/', views.create_parameter, name='create_parameter'),
     path('parameters/<int:parameter_id>/update/', views.update_parameter, name='update_parameter'),
     path('parameters/<int:pk>/delete', views.ParameterDelete.as_view(), name='delete_parameter'),
-
     path('parameters/info', views.parameter_info, name='parameter_info'),
+
+    path('logs/', views.log_index, name='log_index'),
+
     path('accounts/signup', views.signup, name='signup'),
     ]
     
