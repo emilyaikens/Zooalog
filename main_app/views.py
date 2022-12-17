@@ -187,9 +187,20 @@ def log_forms(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     param_form = ParameterLogForm()
     param_form.fields['parameter'].queryset = Parameter.objects.filter(user=request.user)
-    # return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
-    pass 
+    return render(request, 'logs/log_forms.html', { 'enclosure': enclosure, 'param_form': param_form })
 
+
+# Create new parameter log
+def create_parameter_log(request, enclosure_id):
+    #create ParameterLogForm instance using data in request.POST
+    form = ParameterLogForm(request.POST, request=request)
+    # Validate the form
+    # if form.is_valid:
+    #     #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+    #     new_log = form.save(commit=False)
+    #     new_log.enclosure_id = enclosure_id
+    #     new_log.save()
+    return redirect ('detail', enclosure_id=enclosure_id)
 
 # Create new User
 def signup(request):
