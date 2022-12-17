@@ -55,9 +55,9 @@ class Animal(models.Model):
 class Parameter(models.Model):
     parameter = models.CharField(max_length=250)
     units = models.CharField(max_length=50)
-    ideal_range = models.CharField(max_length=250)
-    frequency = models.CharField(max_length=250)
-    notes = models.CharField(max_length=250)
+    ideal_range = models.CharField(max_length=250, blank=True)
+    frequency = models.CharField(max_length=250, blank=True)
+    notes = models.CharField(max_length=250, blank=True)
 
     # Create foreign key for Enclosure
     # on_delete: when an enclosure is deleted, all of its children will also be deleted
@@ -72,9 +72,8 @@ class ParameterLog(models.Model):
     time = models.TimeField(blank = True)
     value = models.CharField(max_length=250)
 
-    # Create foreign key for Enclosure and Parameter
-    # on_delete: when an enclosure or parameter is deleted, all of its children will also be deleted
-    enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
+    # Create foreign key for Parameter
+    # on_delete: when parameter is deleted, all of its children will also be deleted
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
 
     # class Meta:
