@@ -136,7 +136,7 @@ def create_parameter(request, enclosure_id):
     if form.is_valid:
         #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
         new_parameter = form.save(commit=False)
-        new_parameter.enclosure_id = enclosure_id
+        new_parameter.enclosure = enclosure_id
         new_parameter.save()
     return redirect ('detail', enclosure_id=enclosure_id)
 
@@ -144,14 +144,14 @@ def create_parameter(request, enclosure_id):
 # Update parameter
 def update_parameter(request, parameter_id):
     parameter = Parameter.objects.get(id=parameter_id)
-    enclosure_id = parameter.enclosure_id
+    enclosure_id = parameter.enclosure
 
     if request.method == 'POST':
         parameter_form = ParameterForm(request.POST, instance=parameter)
         if parameter_form.is_valid():
             #commit=False returns an in-memory model object assigned to enclosure_id before saving to the database
             form = parameter_form.save(commit=False)
-            form.enclosure_id = enclosure_id
+            form.enclosure = enclosure_id
             form.save()
             return redirect ('detail', enclosure_id)
     else:
@@ -166,7 +166,7 @@ class ParameterDelete(DeleteView):
     # Must redirect after deletion because enclosure will no longer exist
     # Redirection involves capturing the enclosure_id from the parameter bc details requires id
     def get_success_url(self):
-        enclosure_id = self.object.enclosure_id
+        enclosure_id = self.object.enclosure
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 
@@ -185,8 +185,10 @@ def log_enclosures(request):
 # Show all forms to log info for given enclosure
 def log_forms(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
-    param_form = ParameterLogForm()
-    param_form.fields['parameter'].queryset = Parameter.objects.filter(user=request.user)
+    print("HIHIHIHIHIH")
+    print(Parameter.objects.filter(enclosure=enclosure_id))
+    param_form = ParameterLogForm(request=request)
+    param_form.fields['parameter'].queryset = Parameter.objects.filter(enclosure=enclosure_id)
     return render(request, 'logs/log_forms.html', { 'enclosure': enclosure, 'param_form': param_form })
 
 

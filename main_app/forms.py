@@ -40,13 +40,13 @@ class ParameterLogForm(ModelForm):
     class Meta:
         model = ParameterLog
         fields = [
-            'parameter',
             'date',
             'time',
+            'parameter'
         ]
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        super(ParameterForm, self).__init__(*args, **kwargs)
-        self.fields['parameter'].queryset = Parameter.objects.filter(user=self.request.user).values('parameter')
+        super(ParameterLogForm, self).__init__(*args, **kwargs)
+        self.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=self.request.enclosure) #.values('parameter')enclosure_id=enclosure_id
         self.fields['time'].required = False
