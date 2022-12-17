@@ -40,9 +40,10 @@ class ParameterLogForm(ModelForm):
     class Meta:
         model = ParameterLog
         fields = [
+            'parameter',
+            'value',
             'date',
             'time',
-            'parameter'
         ]
 
     def __init__(self, *args, **kwargs):

@@ -70,11 +70,12 @@ class Parameter(models.Model):
 class ParameterLog(models.Model):
     date = models.DateField()
     time = models.TimeField(blank = True)
+    value = models.CharField(max_length=250)
 
     # Create foreign key for Enclosure and Parameter
-    # on_delete: when an enclosure is deleted, all of its children will also be deleted
+    # on_delete: when an enclosure or parameter is deleted, all of its children will also be deleted
     enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
 
-    class Meta:
-        ordering = ['-date']
+    # class Meta:
+    #     ordering = ['-date']

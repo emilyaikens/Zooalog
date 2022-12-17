@@ -182,15 +182,12 @@ def log_enclosures(request):
     return render(request, 'logs/log_enclosures.html', { 'enclosures': enclosures })
 
 
-# Show all forms to log info for given enclosure
+# Show forms to log info for given enclosure
 def log_forms(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     param_form = ParameterLogForm(request=enclosure_id)
     param_form.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=enclosure_id)
     return render(request, 'logs/log_forms.html', { 'enclosure': enclosure, 'param_form': param_form })
-
-#parameter = Parameter.objects.get(id=parameter_id)
-# parameter_form = ParameterForm(instance=parameter)
 
 
 # Create new parameter log
