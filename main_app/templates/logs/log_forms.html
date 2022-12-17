@@ -9,7 +9,7 @@
 <h5>Log Parameters</h5>
 <div class="card">
     <div class="card-content">
-        <form action="" method="POST">
+        <form action="{url 'create_parameter_log' enclosure_id}" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
             <table>
