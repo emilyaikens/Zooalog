@@ -8,7 +8,7 @@
 <!-- Form for parameter log -->
 <div class="card">
     <div class="card-content">
-        <form action="{% url 'create_parameter_log' enclosure_id%}" method="POST">
+        <form action="" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
             <table>

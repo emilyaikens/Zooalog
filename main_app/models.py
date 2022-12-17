@@ -64,7 +64,7 @@ class Parameter(models.Model):
     enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.parameter
 
 
 class ParameterLog(models.Model):
@@ -75,9 +75,6 @@ class ParameterLog(models.Model):
     # on_delete: when an enclosure is deleted, all of its children will also be deleted
     enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
     parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         ordering = ['-date']
