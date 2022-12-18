@@ -58,6 +58,8 @@ Mockup for home page
 
 ## Progress Report
 
+* Dec 17, 2022: User can now create a log entry for a parameter.
+* Dec 16, 2022: Set up the Log templates and pathways. Add ParameterLog model. Create ParameterLogForm and associated URL paths and views so that it renders in the log_forms template. 
 * Dec 14, 2022: Add Parameters model. Complete CRUD for Animal and Parameters models. Create templates/parameters/info.html tables with information about commonly used parameters. 
 * Dec 13, 2022: Change Test model to Enclosure and change Sub model to Animal. Delete db and re-migrate. Move create animal form (previously create sub form) to its own page. 
 * Dec 11 2022: Set up user authentication and authorization. Signup, login, and logout functionality are all up and running.

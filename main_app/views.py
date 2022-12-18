@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Enclosure, Animal, Parameter
+from .models import Enclosure, Animal, Parameter, ParameterLog
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import AnimalForm, ParameterForm
+from .forms import AnimalForm, ParameterForm, ParameterLogForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -22,24 +22,24 @@ from django.urls import reverse
 # above function: @login_required
 # in class example: class testCreate(LoginRequiredMixin, Create View)
 
-# Define the home view
+# Render the home view
 def home(request):
     return render(request, 'home.html')
 
 
-# Define the about view
+# Render the about view
 def about(request):
     return render(request, 'about.html')
 
 
-# Define the enclosure view
+# Render the enclosure view
 def enclosure_index(request):
-    # retrieve all tests from db and save to variable tests
+    # retrieve all enclosures from db and save to variable tests
     enclosures = Enclosure.objects.filter(user=request.user)
     return render(request, 'enclosures/index.html', { 'enclosures': enclosures })
 
 
-# Define the enclosure detail view
+# Render the enclosure detail view
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     return render(request, 'enclosures/detail.html', { 'enclosure': enclosure })
@@ -168,6 +168,43 @@ class ParameterDelete(DeleteView):
     def get_success_url(self):
         enclosure_id = self.object.enclosure_id
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
+
+
+# Render log index
+def log_index(request):
+    return render(request, 'logs/log_index.html')
+
+
+# Render enclosures for logs
+def log_enclosures(request):
+    # retrieve all enclosures from db and save to variable tests
+    enclosures = Enclosure.objects.filter(user=request.user)
+    return render(request, 'logs/log_enclosures.html', { 'enclosures': enclosures })
+
+
+# Show forms to log info for given enclosure
+def log_forms(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+
+    if request.method == 'POST':
+        form = ParameterLogForm(request.POST, request=enclosure_id)
+        # Validate the form
+        if form.is_valid():
+            form.save()
+        else:
+            print(form.errors)
+    
+    param_form = ParameterLogForm(request=enclosure_id)
+    param_form.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=enclosure_id)
+    return render(request, 'logs/parameter_log_form.html', { 'enclosure': enclosure, 'param_form': param_form, 'enclosure_id': enclosure_id })
+
+
+# Show parameter logs
+def parameter_logs(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    parameters = Parameter.objects.filter(enclosure_id=enclosure_id)
+    logs = ParameterLog.objects.filter(parameter_id__in=parameters)
+    return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters, 'logs': logs })
 
 
 # Create new User

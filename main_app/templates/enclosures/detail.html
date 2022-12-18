@@ -8,7 +8,7 @@
 <!-- Enclosure details -->
 <div class="card">
     <div class="card-content">
-        <span class="card-title title">{{ enclosure.name }}</span>
+        <span class="card-title title">{{ enclosure.name|capfirst }}</span>
         <p>Type: {{ enclosure.get_type_display }}</p>
         <p>Description: {{ enclosure.description|linebreaks }}</p>
         <div class="card-action">
@@ -43,9 +43,9 @@
                 <tbody>
                     {% for animal in enclosure.animal_set.all %}
                     <tr>
-                        <td>{{animal.given_name}}</td>
-                        <td>{{animal.common_name}}</td>
-                        <td>{{animal.scientific_name}}</td>
+                        <td>{{animal.given_name|capfirst}}</td>
+                        <td>{{animal.common_name|capfirst}}</td>
+                        <td><span class="sci-name">{{animal.scientific_name}}</span></td>
                         <td>{{animal.quantity}}</td>
                         <td>
                             <a href="{% url 'update_animal' animal.id %}">
@@ -113,8 +113,10 @@
     </li>
 </ul>
 
-<!-- Add parameter -->
-<a href="{% url 'add_parameter' enclosure.id %}"><button class="btn teal darken-4">Add Parameter</button></a>
+<!-- Add/log/view parameter -->
+<a href="{% url 'add_parameter' enclosure.id %}" style="margin-right: 15px"><button class="btn teal darken-4">Add Parameter</button></a>
+<a href="{% url 'log_forms' enclosure.id %}" style="margin-right: 15px"><button class="btn teal darken-4">Log Parameters</button></a>
+<a href="{% url 'parameter_logs' enclosure.id %}" style="margin-right: 15px"><button class="btn teal darken-4">View Parameter Logs</button></a>
 
 <div class="bottom-space">&nbsp</div>
 

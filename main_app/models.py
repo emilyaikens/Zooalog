@@ -6,15 +6,15 @@
 
 from django.db import models
 from django.urls import reverse
-from datetime import date
+from datetime import date, time
 from django.contrib.auth.models import User
 
 TYPES = (
-    ('TropF','Tropical Freshwater'),
-    ('TempF','Temperate Freshwater'),
-    ('TropM','Tropical Marine'),
-    ('TempM','Temparate Marine'),
-    ('Ter','Terrarium'),
+    ('TROPF','Tropical Freshwater'),
+    ('TEMPF','Temperate Freshwater'),
+    ('TROPM','Tropical Marine'),
+    ('TEMPM','Temparate Marine'),
+    ('TER','Terrarium'),
     ('E','Enclosure'),
     ('O','Other'),
 )
@@ -50,21 +50,30 @@ class Animal(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 
 class Parameter(models.Model):
     parameter = models.CharField(max_length=250)
     units = models.CharField(max_length=50)
-    ideal_range = models.CharField(max_length=250)
-    frequency = models.CharField(max_length=250)
-    notes = models.CharField(max_length=250)
+    ideal_range = models.CharField(max_length=250, blank=True)
+    frequency = models.CharField(max_length=250, blank=True)
+    notes = models.CharField(max_length=250, blank=True)
 
     # Create foreign key for Enclosure
     # on_delete: when an enclosure is deleted, all of its children will also be deleted
     enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.parameter
 
-        # class Meta:
+
+class ParameterLog(models.Model):
+    # Create foreign key for Parameter
+    # on_delete: when parameter is deleted, all of its children will also be deleted
+    parameter = models.ForeignKey(Parameter, on_delete=models.CASCADE)
+    value = models.CharField(max_length=250)
+    date = models.DateField()
+    time = models.CharField(max_length=200)
+
+    # class Meta:
     #     ordering = ['-date']

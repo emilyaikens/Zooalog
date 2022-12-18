@@ -38,3 +38,7 @@ footer.page-footer {
 .datepicker-done, .datepicker-cancel {
     color: #004d40;
 }
+
+.sci-name {
+    font-style: italic;
+}
