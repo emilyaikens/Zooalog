@@ -26,8 +26,6 @@ urlpatterns = [
     path('parameters/<int:pk>/delete', views.ParameterDelete.as_view(), name='delete_parameter'),
     path('parameters/info', views.parameter_info, name='parameter_info'),
 
-    path('logs/', views.log_index, name='log_index'),
-    path('logs/enclosures', views.log_enclosures, name='log_enclosures'),
     path('logs/<int:enclosure_id>/parameters', views.log_forms, name='log_forms'),
 
     path('accounts/signup', views.signup, name='signup'),
