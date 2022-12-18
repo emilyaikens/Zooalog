@@ -204,7 +204,7 @@ def log_forms(request, enclosure_id):
 def parameter_logs(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     parameters = Parameter.objects.get(enclosure_id=enclosure_id)
-    return render(request, 'logs/parameter_log', { 'enclosure': enclosure, 'parameters': parameters })
+    return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters })
 
 # Create new User
 def signup(request):
