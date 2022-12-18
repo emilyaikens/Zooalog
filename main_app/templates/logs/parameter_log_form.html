@@ -18,10 +18,11 @@
                 {{ param_form.as_p }}
             </table>
             <br>
-            <input type="submit" class="btn teal darken-4" value="submit log and add another">
+            <input type="submit" class="btn teal darken-4" value="submit">
         </form>
         <br>
-        <a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4">All done</button></a>
+        <div>Clicking "Submit" will save your log, clear this form, and allow you to enter a new log</div>
+        <div>If you are finished logging data for this parameter, click the "Back" button</div>
     </div>
 </div>
 

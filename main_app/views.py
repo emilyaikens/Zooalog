@@ -192,7 +192,6 @@ def log_forms(request, enclosure_id):
         if form.is_valid():
             form.save()
         else:
-            print("UNER HERE HERIOFUIDSF")
             print(form.errors)
     
     param_form = ParameterLogForm(request=enclosure_id)
@@ -203,8 +202,9 @@ def log_forms(request, enclosure_id):
 # Show parameter logs
 def parameter_logs(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
-    parameters = Parameter.objects.get(enclosure_id=enclosure_id)
-    return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters })
+    parameters = Parameter.objects.filter(enclosure_id=enclosure_id)
+    logs = ParameterLog.objects.filter(parameter_id__in=parameters)
+    return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters, 'logs': logs })
 
 # Create new User
 def signup(request):

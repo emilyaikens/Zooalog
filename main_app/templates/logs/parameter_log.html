@@ -5,4 +5,38 @@
 
 <h4>Parameter Logs</h4>
 
+{% for parameter in parameters %}
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header">{{ parameter.parameter }}</div>
+            <div class="collapsible-body">
+                <table class="striped responsive-table">
+                    <thead>
+                        <tr>
+                            <th>Value</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                        {% for log in logs %}
+                            {% if log.parameter_id == parameter.id%}
+                                <tr>
+                                    <td>{{ log.value }} {{ parameter.units }}</td>
+                                    <td>{{ log.date }}</td>
+                                    <td>{{ log.time }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </thead>
+                </table>
+            </div>
+        </li>
+    </ul>
+{% endfor %}
+
+<!-- Activate accordion materialize element -->
+<script>
+    const elems = document.querySelectorAll('.collapsible');
+    M.Collapsible.init(elems);
+</script>
+
 {% endblock %}
