@@ -27,6 +27,7 @@ urlpatterns = [
     path('parameters/info', views.parameter_info, name='parameter_info'),
 
     path('logs/<int:enclosure_id>/parameters', views.log_forms, name='log_forms'),
+    path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
 
     path('accounts/signup', views.signup, name='signup'),
     ]

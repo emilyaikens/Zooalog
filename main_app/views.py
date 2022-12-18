@@ -22,24 +22,24 @@ from django.urls import reverse
 # above function: @login_required
 # in class example: class testCreate(LoginRequiredMixin, Create View)
 
-# Define the home view
+# Render the home view
 def home(request):
     return render(request, 'home.html')
 
 
-# Define the about view
+# Render the about view
 def about(request):
     return render(request, 'about.html')
 
 
-# Define the enclosure view
+# Render the enclosure view
 def enclosure_index(request):
     # retrieve all enclosures from db and save to variable tests
     enclosures = Enclosure.objects.filter(user=request.user)
     return render(request, 'enclosures/index.html', { 'enclosures': enclosures })
 
 
-# Define the enclosure detail view
+# Render the enclosure detail view
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     return render(request, 'enclosures/detail.html', { 'enclosure': enclosure })
@@ -197,8 +197,14 @@ def log_forms(request, enclosure_id):
     
     param_form = ParameterLogForm(request=enclosure_id)
     param_form.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=enclosure_id)
-    return render(request, 'logs/parameter_log_form.html', { 'enclosure': enclosure, 'param_form': param_form, 'enclosure_id':enclosure_id })
+    return render(request, 'logs/parameter_log_form.html', { 'enclosure': enclosure, 'param_form': param_form, 'enclosure_id': enclosure_id })
 
+
+# Show parameter logs
+def parameter_logs(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    parameters = Parameter.objects.get(enclosure_id=enclosure_id)
+    return render(request, 'logs/parameter_log', { 'enclosure': enclosure, 'parameters': parameters })
 
 # Create new User
 def signup(request):
