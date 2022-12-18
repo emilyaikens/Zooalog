@@ -16,7 +16,6 @@
                             <th>Value</th>
                             <th>Date</th>
                             <th>Time</th>
-                            <th>&nbsp</th>
                         </tr>
                         {% for log in logs %}
                             {% if log.parameter_id == parameter.id%}
@@ -24,11 +23,6 @@
                                     <td>{{ log.value }} {{ parameter.units }}</td>
                                     <td>{{ log.date }}</td>
                                     <td>{{ log.time }}</td>
-                                    <td>
-                                        <a href="{% url 'delete_parameter_log' log.id%}">
-                                            <button class="btn amber accent-4 black-text">Delete</button>
-                                        </a>
-                                    </td>
                                 </tr>
                             {% endif %}
                         {% endfor %}

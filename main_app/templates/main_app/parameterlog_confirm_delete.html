@@ -1,0 +1,23 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+<!-- Confirm Delete Templates are required for DeleteView CBVs -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Delete Parameter Log</h1>
+
+    <h4>Are you sure you want to delete this log?</h4>
+
+    <div> object id: {{ object.id }}</div>
+    {{ object.parameter_id }}
+
+<div>{{object.date}}</div>
+<div>{{self.enclosure_id}}</div>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes, Delete" class="btn amber accent-4 black-text">
+    </form>
+    </br>
+    <a href=""><button class="btn teal darken-4">Cancel</button></a>
+{% endblock %}

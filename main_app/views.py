@@ -208,14 +208,21 @@ def parameter_logs(request, enclosure_id):
 
 
 # CBV to delete log
-class ParameterLogDelete(DeleteView):
-    model = ParameterLog
-    # Must redirect after deletion because log will no longer exist
-    def get_success_url(self):
-        parameter_id = self.object.parameter_id
-        parameter = Parameter.objects.get(id=parameter_id)
-        enclosure_id = Enclosure.objects.get(id=parameter.enclosure_id)
-        return reverse('parameter_logs', kwargs={'enclosure_id' : enclosure_id})
+# class ParameterLogDelete(DeleteView):
+#     model = ParameterLog
+#     # Must redirect after deletion because log will no longer exist
+#     def get_success_url(self):
+#         parameter_id = self.object.parameter_id
+#         parameter = Parameter.objects.get(id=parameter_id)
+#         enclosure_id = Enclosure.objects.get(id=parameter.enclosure_id)
+#         return reverse('parameter_logs', kwargs={'enclosure_id' : enclosure_id})
+
+# def delete_parameter_log(request, log_id):
+#     log = ParameterLog.objects.get(id=log_id)
+#     parameter = Parameter.objects.get(id=log.parameter_id)
+#     enclosure_id = Enclosure.objects.get(id=parameter.enclosure_id)
+#     log.delete()
+#     return reverse(request, 'parameter_logs', kwargs={'enclosure_id' : enclosure_id})
 
 
 # Create new User
