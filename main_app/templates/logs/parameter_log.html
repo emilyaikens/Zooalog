@@ -25,7 +25,7 @@
                                     <td>{{ log.date }}</td>
                                     <td>{{ log.time }}</td>
                                     <td>
-                                        <a href="">
+                                        <a href="{% url 'delete_parameter_log' log.id%}">
                                             <button class="btn amber accent-4 black-text">Delete</button>
                                         </a>
                                     </td>
