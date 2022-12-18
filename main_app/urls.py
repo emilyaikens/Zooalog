@@ -28,7 +28,6 @@ urlpatterns = [
 
     path('logs/<int:enclosure_id>/parameters', views.log_forms, name='log_forms'),
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
-    # path('logs/delete', views.delete_parameter_log(), name='delete_parameter_log'),
 
     path('accounts/signup', views.signup, name='signup'),
     ]
