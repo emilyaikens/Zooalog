@@ -206,6 +206,16 @@ def parameter_logs(request, enclosure_id):
     logs = ParameterLog.objects.filter(parameter_id__in=parameters)
     return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters, 'logs': logs })
 
+
+# CBV to delete log
+class ParameterLogDelete(DeleteView):
+    model = ParameterLog
+    # Must redirect after deletion because log will no longer exist
+    def get_success_url(self):
+        enclosure_id = self.object.enclosure_id
+        return reverse('parameter_logs', kwargs={'enclosure_id' : enclosure_id})
+
+
 # Create new User
 def signup(request):
     err_msg = ''
