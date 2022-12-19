@@ -118,6 +118,54 @@
 <a href="{% url 'log_forms' enclosure.id %}" style="margin-right: 15px"><button class="btn teal darken-4">Log Parameters</button></a>
 <a href="{% url 'parameter_logs' enclosure.id %}" style="margin-right: 15px"><button class="btn teal darken-4">View Parameter Logs</button></a>
 
+<h4>Diets</h4>
+
+<!-- Diet details for this Enclosure -->
+<ul class="collapsible">
+    <li>
+        <div class="collapsible-header">Click here to see diets assigned to this enclosure</div>
+        <div class="collapsible-body">
+            <table class="striped responsive-table">
+                <thead>
+                    <tr>
+                        <th>Diet Type</th>
+                        <th>Quantity</th>
+                        <th>Frequency</th>
+                        <th>Notes</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for diet in enclosure.diet_set.all %}
+                    <tr>
+                        <td>{{ diet.diet_type }}</td>
+                        <td>{{ diet.quantity }}</td>
+                        <td>{{ diet.frequency }}</td>
+                        <td>{{ param.notes }}</td>
+                        <td>
+                            <a href="">
+                                <button class="btn brown darken-2">Edit</button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="">
+                                <button class="btn amber accent-4 black-text">Delete</button>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </li>
+</ul>
+
+<!-- Add/log/view parameter -->
+<a href="" style="margin-right: 15px"><button class="btn teal darken-4">Add Diet</button></a>
+<a href="" style="margin-right: 15px"><button class="btn teal darken-4">Log Diets</button></a>
+<a href="" style="margin-right: 15px"><button class="btn teal darken-4">View Diet Logs</button></a>
+
 <div class="bottom-space">&nbsp</div>
 
 <!-- Activate accordion materialize element -->
