@@ -75,5 +75,19 @@ class ParameterLog(models.Model):
     date = models.DateField()
     time = models.CharField(max_length=200)
 
-    # class Meta:
-    #     ordering = ['-date']
+    class Meta:
+        ordering = ['-date']
+
+
+class Diet(models.Model):
+    diet_type = models.CharField(max_length=250)
+    quantity = models.CharField(max_length=250)
+    frequency = models.CharField(max_length=250, blank=True)
+    notes = models.CharField(max_length=250, blank=True)
+
+    # Create foreign key for Enclosure
+    # on_delete: when an enclosure is deleted, all of its children will also be deleted
+    enclosure = models.ForeignKey(Enclosure, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.diet_type
