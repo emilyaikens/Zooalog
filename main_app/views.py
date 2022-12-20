@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Enclosure, Animal, Parameter, ParameterLog, Diet
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import AnimalForm, ParameterForm, ParameterLogForm, DietForm
+from .forms import AnimalForm, ParameterForm, ParameterLogForm, DietForm, DietLogForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -220,7 +220,7 @@ def log_index(request):
     return render(request, 'logs/log_index.html')
 
 
-# Show log parameter information for given enclosure
+# Show log parameter form and create log for given enclosure
 def log_parameter(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
 
@@ -243,6 +243,24 @@ def parameter_logs(request, enclosure_id):
     parameters = Parameter.objects.filter(enclosure_id=enclosure_id)
     logs = ParameterLog.objects.filter(parameter_id__in=parameters)
     return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters, 'logs': logs })
+
+
+# Show log diet form and create diet log for given enclosure
+def log_diet(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+
+    if request.method == 'POST':
+        form = DietLogForm(request.POST, request=enclosure_id)
+        # Validate the form
+        if form.is_valid():
+            form.save()
+        else:
+            print(form.errors)
+    
+    diet_form = DietLogForm(request=enclosure_id)
+    diet_form.fields['diet'].queryset = Diet.objects.filter(enclosure_id=enclosure_id)
+    return render(request, 'logs/diet_log_form.html', { 'enclosure': enclosure, 'diet_form': diet_form, 'enclosure_id': enclosure_id })
+
 
 # Create new User
 def signup(request):

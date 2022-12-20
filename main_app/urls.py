@@ -33,7 +33,6 @@ urlpatterns = [
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
     path('logs/<int:enclosure_id>/diets', views.log_diet, name='log_diet'),
 
-
     path('accounts/signup', views.signup, name='signup'),
     ]
     
