@@ -91,3 +91,15 @@ class Diet(models.Model):
 
     def __str__(self):
         return self.diet_type
+
+
+class DietLog(models.Model):
+    # Create foreign key for Diet
+    # on_delete: when diet is deleted, all of its children will also be deleted
+    diet = models.ForeignKey(Diet, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.CharField(max_length=200)
+    notes = models.CharField(max_length=250, blank=True)
+
+    class Meta:
+        ordering = ['-date']
