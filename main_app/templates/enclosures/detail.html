@@ -142,9 +142,9 @@
                         <td>{{ diet.diet_type }}</td>
                         <td>{{ diet.quantity }}</td>
                         <td>{{ diet.frequency }}</td>
-                        <td>{{ param.notes }}</td>
+                        <td>{{ diet.notes }}</td>
                         <td>
-                            <a href="">
+                            <a href="{% url 'update_diet' diet.id %}">
                                 <button class="btn brown darken-2">Edit</button>
                             </a>
                         </td>
