@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Enclosure, Animal, Parameter, ParameterLog
+from .models import Enclosure, Animal, Parameter, ParameterLog, Diet
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import AnimalForm, ParameterForm, ParameterLogForm, DietForm
 from django.contrib.auth import login
@@ -187,6 +187,23 @@ def create_diet(request, enclosure_id):
     diet_form = DietForm()
     return render(request, 'diets/add_diet.html', { 'enclosure': enclosure, 'diet_form': diet_form})
 
+
+# Update diet
+def update_diet(request, diet_id):
+    diet = Diet.objects.get(id=diet_id)
+    enclosure_id = diet.enclosure_id
+
+    if request.method == 'POST':
+        diet_form = DietForm(request.POST, instance=diet)
+        if diet_form.is_valid():
+            #commit=False returns an in-memory model object assigned to enclosure_id before saving to the database
+            form = diet_form.save(commit=False)
+            form.enclosure_id = enclosure_id
+            form.save()
+            return redirect ('detail', enclosure_id)
+
+    diet_form = DietForm(instance=diet)
+    return render(request, 'diets/update_diet.html', {'diet_form': diet_form})
 
 # Render log index
 def log_index(request):
