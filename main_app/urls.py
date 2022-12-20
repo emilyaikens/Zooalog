@@ -27,6 +27,8 @@ urlpatterns = [
 
     path('diets/<int:enclosure_id>/create_diet', views.create_diet, name='create_diet'),
     path('diets/<int:diet_id>/update/', views.update_diet, name='update_diet'),
+        path('diets/<int:pk>/delete', views.DietDelete.as_view(), name='delete_diet'),
+
 
     path('logs/<int:enclosure_id>/parameters', views.log_parameter, name='log_parameter'),
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
