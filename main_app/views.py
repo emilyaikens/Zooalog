@@ -184,7 +184,7 @@ def create_diet(request, enclosure_id):
             new_diet.save()
         return redirect ('detail', enclosure_id=enclosure_id)
 
-    diet_form = ParameterForm()
+    diet_form = DietForm()
     return render(request, 'diets/add_diet.html', { 'enclosure': enclosure, 'diet_form': diet_form})
 
 

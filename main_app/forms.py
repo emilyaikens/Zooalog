@@ -64,6 +64,6 @@ class DietForm(ModelForm):
         ]
     
     def __init__(self, *args, **kwargs):
-        super(ParameterForm, self).__init__(*args, **kwargs)
+        super(DietForm, self).__init__(*args, **kwargs)
         self.fields['frequency'].required = False
         self.fields['notes'].required = False
