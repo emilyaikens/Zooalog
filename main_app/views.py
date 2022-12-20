@@ -174,15 +174,8 @@ def log_index(request):
     return render(request, 'logs/log_index.html')
 
 
-# Render enclosures for logs
-def log_enclosures(request):
-    # retrieve all enclosures from db and save to variable tests
-    enclosures = Enclosure.objects.filter(user=request.user)
-    return render(request, 'logs/log_enclosures.html', { 'enclosures': enclosures })
-
-
-# Show forms to log info for given enclosure
-def log_forms(request, enclosure_id):
+# Show log parameter information for given enclosure
+def log_parameter(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
 
     if request.method == 'POST':

@@ -27,7 +27,7 @@ urlpatterns = [
 
     # path('diets/<int:enclosure_id>/add_diet', views.add_diet, name='add_diet'),
 
-    path('logs/<int:enclosure_id>/parameters', views.log_forms, name='log_forms'),
+    path('logs/<int:enclosure_id>/parameters', views.log_parameter, name='log_parameter'),
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
 
     path('accounts/signup', views.signup, name='signup'),
