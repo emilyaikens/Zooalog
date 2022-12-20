@@ -81,7 +81,7 @@ class DietLogForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        super(ParameterLogForm, self).__init__(*args, **kwargs)
-        self.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=self.request)
+        super(DietLogForm, self).__init__(*args, **kwargs)
+        self.fields['diet'].queryset = Parameter.objects.filter(enclosure_id=self.request)
         self.fields['time'].required = False
         self.fields['notes'].required = False
