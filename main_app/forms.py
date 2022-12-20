@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Animal, Parameter, ParameterLog, Diet
+from .models import Animal, Parameter, ParameterLog, Diet, DietLog
 
 class AnimalForm(ModelForm):
     class Meta:
@@ -66,4 +66,22 @@ class DietForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(DietForm, self).__init__(*args, **kwargs)
         self.fields['frequency'].required = False
+        self.fields['notes'].required = False
+
+
+class DietLogForm(ModelForm):
+    class Meta:
+        model = DietLog
+        fields = [
+            'diet',
+            'date',
+            'time',
+            'notes',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(ParameterLogForm, self).__init__(*args, **kwargs)
+        self.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=self.request)
+        self.fields['time'].required = False
         self.fields['notes'].required = False
