@@ -162,7 +162,7 @@ def update_parameter(request, parameter_id):
 # CBV to delete parameter
 class ParameterDelete(DeleteView):
     model = Parameter
-    # Must redirect after deletion because enclosure will no longer exist
+    # Must redirect after deletion because parameter will no longer exist
     # Redirection involves capturing the enclosure_id from the parameter bc details requires id
     def get_success_url(self):
         enclosure_id = self.object.enclosure_id
@@ -204,6 +204,16 @@ def update_diet(request, diet_id):
 
     diet_form = DietForm(instance=diet)
     return render(request, 'diets/update_diet.html', {'diet_form': diet_form})
+
+
+# CBV to delete diet
+class DietDelete(DeleteView):
+    model = Diet
+    # Must redirect after deletion because diet will no longer exist
+    # Redirection involves capturing the enclosure_id from the diet bc details requires id
+    def get_success_url(self):
+        enclosure_id = self.object.enclosure_id
+        return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 # Render log index
 def log_index(request):
