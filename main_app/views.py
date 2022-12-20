@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Enclosure, Animal, Parameter, ParameterLog, Diet
+from .models import Enclosure, Animal, Parameter, ParameterLog, Diet, DietLog
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import AnimalForm, ParameterForm, ParameterLogForm, DietForm, DietLogForm
 from django.contrib.auth import login
@@ -260,6 +260,14 @@ def log_diet(request, enclosure_id):
     diet_form = DietLogForm(request=enclosure_id)
     diet_form.fields['diet'].queryset = Diet.objects.filter(enclosure_id=enclosure_id)
     return render(request, 'logs/diet_log_form.html', { 'enclosure': enclosure, 'diet_form': diet_form, 'enclosure_id': enclosure_id })
+
+
+# Show diet logs
+def diet_logs(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+    diets = Diet.objects.filter(enclosure_id=enclosure_id)
+    logs = DietLog.objects.filter(diet_id__in=diets)
+    return render(request, 'logs/diet_log.html', { 'enclosure': enclosure, 'diets': diets, 'logs': logs })
 
 
 # Create new User
