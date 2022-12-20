@@ -17,10 +17,9 @@ from django.urls import reverse
 # Example: 
 # def home(request):
 #    return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
+# More testing: use code below to return user to a specific url after form submits
+#success_url = '/test/'
 
-# auth docoration 
-# above function: @login_required
-# in class example: class testCreate(LoginRequiredMixin, Create View)
 
 # Render the home view
 def home(request):
@@ -33,6 +32,7 @@ def about(request):
 
 
 # Render the enclosure view
+@login_required
 def enclosure_index(request):
     # retrieve all enclosures from db and save to variable tests
     enclosures = Enclosure.objects.filter(user=request.user)
@@ -40,13 +40,14 @@ def enclosure_index(request):
 
 
 # Render the enclosure detail view
+@login_required
 def enclosure_detail(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     return render(request, 'enclosures/detail.html', { 'enclosure': enclosure })
 
 
 # CBV to create new enclosure
-class EnclosureCreate(CreateView):
+class EnclosureCreate(LoginRequiredMixin, CreateView):
     model = Enclosure
     fields = ['name', 'description', 'type']
 
@@ -57,25 +58,29 @@ class EnclosureCreate(CreateView):
 
 
 # CBV to update enclosure
-class EnclosureUpdate(UpdateView):
+class EnclosureUpdate(LoginRequiredMixin, UpdateView):
     model = Enclosure
     fields = ['name', 'description', 'type']
 
 
 # CBV to delete enclosure
-class EnclosureDelete(DeleteView):
+
+class EnclosureDelete(LoginRequiredMixin, DeleteView):
     model = Enclosure
     # Must redirect after deletion because enclosure will no longer exist
     success_url = '/enclosures/'
 
 
 # Route to create animal form page
+@login_required
 def add_animal(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     animal_form = AnimalForm()
     return render(request, 'animals/add_animal.html', { 'enclosure': enclosure, 'animal_form': animal_form})
 
 
+# Create a new animal
+@login_required
 def create_animal(request, enclosure_id):
     #create SubForm instance using data in request.POST
     form = AnimalForm(request.POST)
@@ -89,6 +94,7 @@ def create_animal(request, enclosure_id):
 
 
 # Update animal
+@login_required
 def update_animal(request, animal_id):
     animal = Animal.objects.get(id=animal_id)
     enclosure_id = animal.enclosure_id
@@ -108,7 +114,7 @@ def update_animal(request, animal_id):
 
 
 # CBV to delete animal
-class AnimalDelete(DeleteView):
+class AnimalDelete(LoginRequiredMixin, DeleteView):
     model = Animal
     # Must redirect after deletion because enclosure will no longer exist
     # Redirection involves capturing the enclosure_id from the animal bc details requires id
@@ -118,11 +124,13 @@ class AnimalDelete(DeleteView):
 
 
 # Define the parameter info view
+@login_required
 def parameter_info(request):
     return render(request, 'parameters/info.html')
 
 
 # If GET, show add parameter form. If POST, create new parameter
+@login_required
 def create_parameter(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
 
@@ -142,6 +150,7 @@ def create_parameter(request, enclosure_id):
 
 
 # Update parameter
+@login_required
 def update_parameter(request, parameter_id):
     parameter = Parameter.objects.get(id=parameter_id)
     enclosure_id = parameter.enclosure_id
@@ -160,7 +169,7 @@ def update_parameter(request, parameter_id):
 
 
 # CBV to delete parameter
-class ParameterDelete(DeleteView):
+class ParameterDelete(LoginRequiredMixin, DeleteView):
     model = Parameter
     # Must redirect after deletion because parameter will no longer exist
     # Redirection involves capturing the enclosure_id from the parameter bc details requires id
@@ -170,6 +179,7 @@ class ParameterDelete(DeleteView):
 
 
 # If GET, show add diet form. If POST, create new diet
+@login_required
 def create_diet(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
 
@@ -189,6 +199,7 @@ def create_diet(request, enclosure_id):
 
 
 # Update diet
+@login_required
 def update_diet(request, diet_id):
     diet = Diet.objects.get(id=diet_id)
     enclosure_id = diet.enclosure_id
@@ -207,7 +218,7 @@ def update_diet(request, diet_id):
 
 
 # CBV to delete diet
-class DietDelete(DeleteView):
+class DietDelete(LoginRequiredMixin, DeleteView):
     model = Diet
     # Must redirect after deletion because diet will no longer exist
     # Redirection involves capturing the enclosure_id from the diet bc details requires id
@@ -216,11 +227,13 @@ class DietDelete(DeleteView):
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 # Render log index
+@login_required
 def log_index(request):
     return render(request, 'logs/log_index.html')
 
 
 # Show log parameter form and create log for given enclosure
+@login_required
 def log_parameter(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
 
@@ -238,6 +251,7 @@ def log_parameter(request, enclosure_id):
 
 
 # Show parameter logs
+@login_required
 def parameter_logs(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     parameters = Parameter.objects.filter(enclosure_id=enclosure_id)
@@ -246,6 +260,7 @@ def parameter_logs(request, enclosure_id):
 
 
 # Show log diet form and create diet log for given enclosure
+@login_required
 def log_diet(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
 
@@ -263,6 +278,7 @@ def log_diet(request, enclosure_id):
 
 
 # Show diet logs
+@login_required
 def diet_logs(request, enclosure_id):
     enclosure = Enclosure.objects.get(id=enclosure_id)
     diets = Diet.objects.filter(enclosure_id=enclosure_id)
@@ -284,6 +300,3 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': err_msg}
     return render(request, 'registration/signup.html', context)
-
-    # use code below to return user to a specific url after form submits
-    #success_url = '/test/'
