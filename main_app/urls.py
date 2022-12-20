@@ -29,9 +29,10 @@ urlpatterns = [
     path('diets/<int:diet_id>/update/', views.update_diet, name='update_diet'),
     path('diets/<int:pk>/delete', views.DietDelete.as_view(), name='delete_diet'),
 
-
     path('logs/<int:enclosure_id>/parameters', views.log_parameter, name='log_parameter'),
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
+    path('logs/<int:enclosure_id>/diets', views.log_diet, name='log_diet'),
+
 
     path('accounts/signup', views.signup, name='signup'),
     ]
