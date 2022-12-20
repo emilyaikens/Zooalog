@@ -1,0 +1,51 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ enclosure.name|capfirst }} Diet Log</h1>
+
+<a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4"> < Back</button></a>
+
+<!-- Form for parameter log -->
+<h5>Log Parameters</h5>
+<div class="card">
+    <div class="card-content">
+        <form action="{% url 'log_diet' enclosure_id %}" method="POST">
+            <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
+            {% csrf_token %}
+            <table>
+                {{ diet_form.as_p }}
+            </table>
+            <br>
+            <input type="submit" class="btn teal darken-4" value="submit">
+        </form>
+        <br>
+        <div>Clicking "Submit" will save your log, clear this form, and allow you to enter a new log</div>
+        <div>If you are finished logging data for this parameter, click the "Back" button</div>
+    </div>
+</div>
+
+<script>
+    // Initialize materialize datepicker
+    const dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+
+    // Initialize materialize timepicker
+    const timeEl=document.getElementById('id_time');
+    M.Timepicker.init(timeEl, {
+        defaultTime: 'now',
+        autoClose: true
+    })
+
+    // Initialize materialize dropdown select menu
+    const typeSelect = document.getElementById('id_parameter');
+    M.FormSelect.init(typeSelect);
+</script>
+
+{% endblock %}
