@@ -3,7 +3,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ enclosure.name|capfirst }} Parameter Log</h1>
+<h1>{{ enclosure.name|capfirst }} Diet Log</h1>
 
 <a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4"> < Back</button></a>
 
@@ -11,11 +11,11 @@
 <h5>Log Parameters</h5>
 <div class="card">
     <div class="card-content">
-        <form action="{% url 'log_parameter' enclosure_id %}" method="POST">
+        <form action="{% url 'log_diet' enclosure_id %}" method="POST">
             <!-- Security measure - makes it difficult to perform cross-site-request-forgery -->
             {% csrf_token %}
             <table>
-                {{ param_form.as_p }}
+                {{ diet_form.as_p }}
             </table>
             <br>
             <input type="submit" class="btn teal darken-4" value="submit">
@@ -44,7 +44,7 @@
     })
 
     // Initialize materialize dropdown select menu
-    const typeSelect = document.getElementById('id_parameter');
+    const typeSelect = document.getElementById('id_diet');
     M.FormSelect.init(typeSelect);
 </script>
 

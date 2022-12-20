@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Animal, Parameter, ParameterLog
+from .models import Animal, Parameter, ParameterLog, Diet, DietLog
 
 class AnimalForm(ModelForm):
     class Meta:
@@ -11,7 +11,7 @@ class AnimalForm(ModelForm):
             'scientific_name', 
             'quantity'
         ]
-
+    
     def __init__(self, *args, **kwargs):
         super(AnimalForm, self).__init__(*args, **kwargs)
         self.fields['given_name'].required = False
@@ -36,6 +36,7 @@ class ParameterForm(ModelForm):
         self.fields['frequency'].required = False
         self.fields['notes'].required = False
 
+
 class ParameterLogForm(ModelForm):
     class Meta:
         model = ParameterLog
@@ -50,3 +51,37 @@ class ParameterLogForm(ModelForm):
         self.request = kwargs.pop('request')
         super(ParameterLogForm, self).__init__(*args, **kwargs)
         self.fields['parameter'].queryset = Parameter.objects.filter(enclosure_id=self.request)
+
+
+class DietForm(ModelForm):
+    class Meta:
+        model = Diet
+        fields = [
+            'diet_type',
+            'quantity',
+            'frequency',
+            'notes'
+        ]
+    
+    def __init__(self, *args, **kwargs):
+        super(DietForm, self).__init__(*args, **kwargs)
+        self.fields['frequency'].required = False
+        self.fields['notes'].required = False
+
+
+class DietLogForm(ModelForm):
+    class Meta:
+        model = DietLog
+        fields = [
+            'diet',
+            'date',
+            'time',
+            'notes',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(DietLogForm, self).__init__(*args, **kwargs)
+        self.fields['diet'].queryset = Diet.objects.filter(enclosure_id=self.request)
+        self.fields['time'].required = False
+        self.fields['notes'].required = False

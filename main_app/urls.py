@@ -20,14 +20,19 @@ urlpatterns = [
     path('animals/<int:animal_id>/update/', views.update_animal, name='update_animal'),
     path('animals/<int:pk>/delete', views.AnimalDelete.as_view(), name='delete_animal'),
 
-    path('parameters/<int:enclosure_id>/add_parameter', views.add_parameter, name='add_parameter'),
     path('parameters/<int:enclosure_id>/create_parameter/', views.create_parameter, name='create_parameter'),
     path('parameters/<int:parameter_id>/update/', views.update_parameter, name='update_parameter'),
     path('parameters/<int:pk>/delete', views.ParameterDelete.as_view(), name='delete_parameter'),
     path('parameters/info', views.parameter_info, name='parameter_info'),
 
-    path('logs/<int:enclosure_id>/parameters', views.log_forms, name='log_forms'),
+    path('diets/<int:enclosure_id>/create_diet', views.create_diet, name='create_diet'),
+    path('diets/<int:diet_id>/update/', views.update_diet, name='update_diet'),
+    path('diets/<int:pk>/delete', views.DietDelete.as_view(), name='delete_diet'),
+
+    path('logs/<int:enclosure_id>/parameters', views.log_parameter, name='log_parameter'),
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),
+    path('logs/<int:enclosure_id>/diets', views.log_diet, name='log_diet'),
+    path('logs/<int:enclosure_id>/diet_logs', views.diet_logs, name='diet_logs'),
 
     path('accounts/signup', views.signup, name='signup'),
     ]
