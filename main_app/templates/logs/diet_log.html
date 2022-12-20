@@ -1,0 +1,34 @@
+<!-- Django Template Language (DTL) is Django's own templating engine -->
+
+{% extends 'base.html' %}
+{% block content %}
+
+<h4>Diet Logs for {{ enclosure.name|capfirst }}</h4>
+<br>
+<table class="striped responsive-table">
+    <thead>
+        <tr>
+            <th>Diet</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Notes</th>
+        </tr>
+    <tbody>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.diet }}</td>
+            <td>{{ log.date }}</td>
+            <td>{{ log.time }}</td>
+            <td>{{ log.notes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Activate accordion materialize element -->
+<script>
+    const elems = document.querySelectorAll('.collapsible');
+    M.Collapsible.init(elems);
+</script>
+
+{% endblock %}
