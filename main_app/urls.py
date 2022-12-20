@@ -25,7 +25,7 @@ urlpatterns = [
     path('parameters/<int:pk>/delete', views.ParameterDelete.as_view(), name='delete_parameter'),
     path('parameters/info', views.parameter_info, name='parameter_info'),
 
-    # path('diets/<int:enclosure_id>/add_diet', views.add_diet, name='add_diet'),
+    path('diets/<int:enclosure_id>/create_diet', views.create_diet, name='create_diet'),
 
     path('logs/<int:enclosure_id>/parameters', views.log_parameter, name='log_parameter'),
     path('logs/<int:enclosure_id>/parameter_logs', views.parameter_logs, name='parameter_logs'),

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Enclosure, Animal, Parameter, ParameterLog
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import AnimalForm, ParameterForm, ParameterLogForm
+from .forms import AnimalForm, ParameterForm, ParameterLogForm, DietForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -169,6 +169,25 @@ class ParameterDelete(DeleteView):
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 
+# If GET, show add diet form. If POST, create new diet
+def create_diet(request, enclosure_id):
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+
+    if request.method == 'POST':
+        #create SubForm instance using data in request.POST
+        form = DietForm(request.POST)
+        # Validate the form
+        if form.is_valid:
+            #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+            new_diet = form.save(commit=False)
+            new_diet.enclosure_id = enclosure_id
+            new_diet.save()
+        return redirect ('detail', enclosure_id=enclosure_id)
+
+    diet_form = ParameterForm()
+    return render(request, 'diets/add_diet.html', { 'enclosure': enclosure, 'diet_form': diet_form})
+
+
 # Render log index
 def log_index(request):
     return render(request, 'logs/log_index.html')
@@ -197,7 +216,6 @@ def parameter_logs(request, enclosure_id):
     parameters = Parameter.objects.filter(enclosure_id=enclosure_id)
     logs = ParameterLog.objects.filter(parameter_id__in=parameters)
     return render(request, 'logs/parameter_log.html', { 'enclosure': enclosure, 'parameters': parameters, 'logs': logs })
-
 
 # Create new User
 def signup(request):
