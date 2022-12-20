@@ -117,28 +117,28 @@ class AnimalDelete(DeleteView):
         return reverse('detail', kwargs={'enclosure_id' : enclosure_id})
 
 
-# Route to create parameter page
-def add_parameter(request, enclosure_id):
-    enclosure = Enclosure.objects.get(id=enclosure_id)
-    parameter_form = ParameterForm()
-    return render(request, 'parameters/add_parameter.html', { 'enclosure': enclosure, 'parameter_form': parameter_form})
-
-
 # Define the parameter info view
 def parameter_info(request):
     return render(request, 'parameters/info.html')
 
 
+# If GET, show add parameter form. If POST, create new parameter
 def create_parameter(request, enclosure_id):
-    #create SubForm instance using data in request.POST
-    form = ParameterForm(request.POST)
-    # Validate the form
-    if form.is_valid:
-        #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
-        new_parameter = form.save(commit=False)
-        new_parameter.enclosure_id = enclosure_id
-        new_parameter.save()
-    return redirect ('detail', enclosure_id=enclosure_id)
+    enclosure = Enclosure.objects.get(id=enclosure_id)
+
+    if request.method == 'POST':
+        #create SubForm instance using data in request.POST
+        form = ParameterForm(request.POST)
+        # Validate the form
+        if form.is_valid:
+            #commit=False returns an in-memory model object that we can assign to test_id before saving to the database
+            new_parameter = form.save(commit=False)
+            new_parameter.enclosure_id = enclosure_id
+            new_parameter.save()
+        return redirect ('detail', enclosure_id=enclosure_id)
+
+    parameter_form = ParameterForm()
+    return render(request, 'parameters/add_parameter.html', { 'enclosure': enclosure, 'parameter_form': parameter_form})
 
 
 # Update parameter
@@ -154,9 +154,8 @@ def update_parameter(request, parameter_id):
             form.enclosure_id = enclosure_id
             form.save()
             return redirect ('detail', enclosure_id)
-    else:
-        parameter_form = ParameterForm(instance=parameter)
-    
+
+    parameter_form = ParameterForm(instance=parameter)
     return render(request, 'parameters/update_parameter.html', {'parameter_form': parameter_form})
 
 
