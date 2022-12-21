@@ -1,10 +1,81 @@
-<!-- Django Template Language (DTL) is Django's own templating engine -->
+<!-- load css from static/css/style.css -->
+{% load static %}
 
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zooalog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
 
-<h1>Home Page</h1>
-<hr />
-<p>home page content</p>
+    <div class="home-body">
 
-{% endblock %}
+        <div class="jumbo">
+
+            <header class="navbar">
+                <nav class="N/A transparent">
+                <div class="nav-wrapper">
+                    <ul class="right">
+                            <li><a href="{% url 'about' %}"><h5 class="home-nav">ABOUT</h5></a></li>
+                            <li><a href="{% url 'signup' %}"><h5 class="home-nav">SIGN UP</h5></a></li>
+                            <li><a href="{% url 'login' %}"><h5 class="home-nav">SIGN IN</h5></a></li>
+                    </ul>
+                </div>
+                </nav>
+            </header>
+
+            <h1 class="zooalog-title">zooalog</h1>
+            <h5 class="zooalog-subtitle">Animal Care Tracking Made Easy</h5>
+        </div>
+
+        <div>
+            <h5 class="home-description">Support best animal care practices with the best tracking system</h5>
+        </div>
+
+        <div class="home-cards">
+            <div class="row ">
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../static/images/dragon.png">
+                        </div>
+                    </div>
+                    <!-- end of card -->
+                </div>
+                <!-- end of column -->
+
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../static/images/fish.png">
+                        </div>
+                    </div>
+                    <!-- end of card -->
+                </div>
+                <!-- end of column -->
+
+                <div class="col s4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="../static/images/rabbit.png">
+                        </div>
+                    </div>
+                    <!-- end of card -->
+                </div>
+                <!-- end of column -->
+                
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container -->
+
+    </div>
+
+</body>
+</html>
