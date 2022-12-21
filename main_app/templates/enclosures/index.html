@@ -5,7 +5,9 @@
 
 <h1>My Enclosures</h1>
 <hr />
+<br>
 <a href="{% url 'enclosure_create' %}"><button class="btn teal darken-4">Add Enclosure</button></a>
+<div>&nbsp</div>
 {% for enclosure in enclosures %}
     {% if enclosure %}
         <a href="{% url 'detail' enclosure.id%}">
