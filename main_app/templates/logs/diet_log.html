@@ -3,11 +3,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<br>
+<a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4"> < Back to enclosure</button></a>
 <h4>Diet Logs for {{ enclosure.name|capfirst }}</h4>
+<br>
+<hr>
 <br>
 <table class="striped responsive-table">
     <thead>
-        <tr>
+        <tr class="brown lighten-5">
             <th>Diet</th>
             <th>Date</th>
             <th>Time</th>

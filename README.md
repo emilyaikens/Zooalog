@@ -2,28 +2,21 @@
 
 ## Description: 
 
-Zooalog is an animal husbandry tracking app. 
+Zooalog is an animal husbandry tracking app that allows hobbyists with aquariums or terrestrial enclosures to keep track of their animal care practices.
 
-Hobbiests can use this application to log inputs and outputs of animals in their care. Logs can include parameters such as diet, behavior, and customizable abiotic factors including but not limited to temperature, humidity, salinity, pH, O2 levels and NO3. 
+Users can keep track of animals in their enclosures, and create logs of diet and important habitat parameters.
+
+Why Zooalog?
+
+I worked as a biologist for ten years before transitioning to a software engineering career. The majority of my time as a biologist was spent working closely with animal care departments at aquariums; collecting data, collecting and caring for specimens, and creating biologically appropriate enclosures. I have also spent time working with veterinary care facilities, and with animal care departments that specialize in non-marine organisms.
+
+During my career I quickly realized that to maximize the efficiency of animal care and to ensure best husbandry practices, keeping thorough and concise logs was critical. There are certain well-known animal husbandry tracking apps on the market, but the ones that hold the market are either too expensive for smaller organizations, and the usability is sub-standard. In creating Zooalog, I hoped to build a product that combined years of animal care experience with a modern and approachable user experience that was financially feasible for small-scale operations.
+
+Zooalog is still small. It is currently more equipped for the hobbyist than an animal care department, but this journey is just beginning!
+
+For now, hobbiests can use this application to log inputs and outputs of animals in their care. Logs can include diet and customizable abiotic factors (parameters) including but not limited to temperature, humidity, salinity, pH, O2 levels and NO3. 
 
 This app is enclosure-centric, meaning the user must create an Enclosure in order to log an animal. As such, this app is better designed for users with critters such as fish, reptiles, and contained mammals or birds. In theory a user could log their dog or cat, but they would have to do so by first creating an Enclosure. Perhaps in that case they could just call the Enclosure "House", but really this app is more catered towards the former examples. 
-
-## Goals
-
-The three broad user stories this app achives are:
-1. AAU, I want to create new enclosures that have animals, parameters, diets and maintenance (Create)
-2. AAU, I want to view my existing enclosures and their depenencies (Read)
-3. AAU, I want to manage my existing enclosures (Update and Delete)
-
-Of course each of these can be broken down quite a bit, but these overaching user stories boil down to the idea that this app needs to be full CRUD.
-
-Responsive interface
-
-User-friendly interface
-
-User authentication
-
-Page authorization
 
 ## Technologies Used
 
@@ -42,9 +35,37 @@ Page authorization
 
 App is under construction so link is not yet available! Stay tuned.
 
-Mockup for home page 
+## Screenshots
 
-![UI Design for home page](https://i.imgur.com/lyHg81S.png)
+![Home page](./main_app/static/images/home.png)
+
+<details>
+    <summary> Enclosure Index </summary>
+    <img src="main_app/static/images/enclosure_index.png">
+</details>
+<details>
+    <summary> Enclosure Detail </summary>
+    <img src="main_app/static/images/enclosure_detail.png">
+</details>
+<details>
+    <summary> Expanded Enclosure Detail </summary>
+    <img src="main_app/static/images/enclosure_expand.png">
+</details>
+<details>
+    <summary> Parameter Information </summary>
+    <img src="main_app/static/images/param-info.png">
+</details>
+<details>
+    <summary> Parameter Log Example </summary>
+    <img src="main_app/static/images/log-expand.png">
+</details>
+
+## Goals
+
+* User-friendly interface
+* User authentication
+* Page authorization
+* Responsive interface
 
 ## Planning Links
 
@@ -52,8 +73,8 @@ Mockup for home page
 
 [User Stories: Trello](https://trello.com/invite/b/MhlMC0Qn/c32c891202deb797028f567e7c5d68d3/zooalog)
 <details>
-<summary> ERD created with Lucidchart </summary>
-<img src="main_app/static/images/erd.png">
+    <summary> ERD created with Lucidchart </summary>
+    <img src="main_app/static/images/erd.png">
 </details>
 
 ## Icebox
@@ -65,6 +86,7 @@ Mockup for home page
 
 ## Progress Report
 
+* Dec 21, 2022: Change some CSS and HTML elements throughout doc to improve UI/UX. Add about page.
 * Dec 20, 2022: Home page HTML and CSS
 * Dec 19, 2022: Tidy up existing functions in views.Create diet model and diet log model and their pathways
 * Dec 17, 2022: User can now create a log entry for a parameter.

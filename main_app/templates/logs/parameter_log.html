@@ -3,12 +3,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<br>
+<a href="{% url 'detail' enclosure.id %}"><button class="btn teal darken-4"> < Back to enclosure</button></a>
 <h4>Parameter Logs for {{ enclosure.name|capfirst }}</h4>
+<br>
+<hr>
+<br>
 
 {% for parameter in parameters %}
     <ul class="collapsible">
         <li>
-            <div class="collapsible-header">{{ parameter.parameter|capfirst }}</div>
+            <div class="collapsible-header brown lighten-5">{{ parameter.parameter|capfirst }}</div>
             <div class="collapsible-body">
                 <table class="striped responsive-table">
                     <thead>
