@@ -18,7 +18,7 @@ main {
 
 .home-body {
     background-color: black;
-    height: 100vh;
+    height: 100dvh;
 }
 
 .jumbo {
@@ -44,6 +44,15 @@ main {
 
 .home-cards {
     margin-top: 20px;
+}
+
+.home-description {
+    color: white;
+    text-align: center;
+    letter-spacing: 0.5vw;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
 
 .bottom-space {
