@@ -56,6 +56,13 @@ Mockup for home page
 <img src="main_app/static/images/erd.png">
 </details>
 
+## Icebox
+
+* Connect app to weather API
+* Create a maintenance model
+* Graph options for viewing data
+* Allow multiple users to connect to a joint account
+
 ## Progress Report
 
 * Dec 20, 2022: Home page HTML and CSS
