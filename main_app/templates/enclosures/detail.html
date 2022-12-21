@@ -6,17 +6,18 @@
 <h1>Enclosure Details</h1>
 
 <!-- Enclosure details -->
-<div class="card">
+<div class="card brown lighten-5">
     <div class="card-content">
         <span class="card-title title">{{ enclosure.name|capfirst }}</span>
-        <p>Type: {{ enclosure.get_type_display }}</p>
-        <p>Description: {{ enclosure.description|linebreaks }}</p>
+        <p><b>Type:</b> {{ enclosure.get_type_display }}</p>
+        <p><b>Description:</b> {{ enclosure.description }}</p>
+        <br>
         <div class="card-action">
             <a href="{% url 'enclosure_update' enclosure.id %}">
-                <button class="btn brown darken-2">Edit</button>
+                <button class="btn blue-grey darken-3">Edit</button>
             </a>
             <a href="{% url 'enclosure_delete' enclosure.id %}">
-                <button class="btn amber accent-4 black-text">Delete</button>
+                <button class="btn blue-grey darken-3">Delete</button>
             </a>
         </div>
     </div>
@@ -27,7 +28,7 @@
 <!-- Animal details for this Enclosure -->
 <ul class="collapsible">
     <li>
-        <div class="collapsible-header">Click here to see animals in this enclosure</div>
+        <div class="collapsible-header brown lighten-5">Click here to see animals in this enclosure</div>
         <div class="collapsible-body">
             <table class="striped responsive-table">
                 <thead>
@@ -49,12 +50,12 @@
                         <td>{{animal.quantity}}</td>
                         <td>
                             <a href="{% url 'update_animal' animal.id %}">
-                                <button class="btn brown darken-2">Edit</button>
+                                <button class="btn blue-grey darken-3">Edit</button>
                             </a>
                         </td>
                         <td>
                             <a href="{% url 'delete_animal' animal.id %}">
-                                <button class="btn amber accent-4 black-text">Delete</button>
+                                <button class="btn blue-grey darken-3">Delete</button>
                             </a>
                         </td>
                     </tr>
@@ -73,7 +74,7 @@
 <!-- Parameter details for this Enclosure -->
 <ul class="collapsible">
     <li>
-        <div class="collapsible-header">Click here to see parameters assigned to this enclosure</div>
+        <div class="collapsible-header brown lighten-5">Click here to see parameters assigned to this enclosure</div>
         <div class="collapsible-body">
             <table class="striped responsive-table">
                 <thead>
@@ -97,12 +98,12 @@
                         <td>{{ param.notes }}</td>
                         <td>
                             <a href="{% url 'update_parameter' param.id %}">
-                                <button class="btn brown darken-2">Edit</button>
+                                <button class="btn blue-grey darken-3">Edit</button>
                             </a>
                         </td>
                         <td>
                             <a href="{% url 'delete_parameter' param.id %}">
-                                <button class="btn amber accent-4 black-text">Delete</button>
+                                <button class="btn blue-grey darken-3">Delete</button>
                             </a>
                         </td>
                     </tr>
@@ -123,7 +124,7 @@
 <!-- Diet details for this Enclosure -->
 <ul class="collapsible">
     <li>
-        <div class="collapsible-header">Click here to see diets assigned to this enclosure</div>
+        <div class="collapsible-header brown lighten-5">Click here to see diets assigned to this enclosure</div>
         <div class="collapsible-body">
             <table class="striped responsive-table">
                 <thead>
@@ -145,12 +146,12 @@
                         <td>{{ diet.notes }}</td>
                         <td>
                             <a href="{% url 'update_diet' diet.id %}">
-                                <button class="btn brown darken-2">Edit</button>
+                                <button class="btn blue-grey darken-3">Edit</button>
                             </a>
                         </td>
                         <td>
                             <a href="{% url 'delete_diet' diet.id %}">
-                                <button class="btn amber accent-4 black-text">Delete</button>
+                                <button class="btn blue-grey darken-3">Delete</button>
                             </a>
                         </td>
                     </tr>
