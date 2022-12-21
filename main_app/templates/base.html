@@ -25,14 +25,14 @@
             </ul>
             <ul class="right">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'index' %}">Enclosures</a></li>
-                    <li><a href="{% url 'enclosure_create' %}">Add Enclosure</a></li>
-                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                    <li><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'index' %}">ENCLOSURES</a></li>
+                    <li><a href="{% url 'enclosure_create' %}">ADD ENCLOSURE</a></li>
+                    <li><a href="{% url 'logout' %}">SIGN OUT</a></li>
                 {% else %}
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Sign In</a></li>
+                    <li><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'signup' %}">SIGN UP</a></li>
+                    <li><a href="{% url 'login' %}">SIGN IN</a></li>
                 {% endif %}
             </ul>
         </div>

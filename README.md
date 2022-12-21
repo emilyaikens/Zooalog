@@ -56,9 +56,17 @@ Mockup for home page
 <img src="main_app/static/images/erd.png">
 </details>
 
+## Icebox
+
+* Connect app to weather API
+* Create a maintenance model
+* Graph options for viewing data
+* Allow multiple users to connect to a joint account
+
 ## Progress Report
 
-* Dec 19, 2022: Tidy up existing functions in views.
+* Dec 20, 2022: Home page HTML and CSS
+* Dec 19, 2022: Tidy up existing functions in views.Create diet model and diet log model and their pathways
 * Dec 17, 2022: User can now create a log entry for a parameter.
 * Dec 16, 2022: Set up the Log templates and pathways. Add ParameterLog model. Create ParameterLogForm and associated URL paths and views so that it renders in the log_forms template. 
 * Dec 14, 2022: Add Parameters model. Complete CRUD for Animal and Parameters models. Create templates/parameters/info.html tables with information about commonly used parameters. 
