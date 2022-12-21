@@ -8,6 +8,44 @@ main {
     flex: 1 0 auto;
 }
 
+.home-nav {
+    letter-spacing: 2px;
+}
+
+.home-nav:hover {
+    text-decoration: underline;
+}
+
+.home-body {
+    background-color: black;
+    height: 100vh;
+}
+
+.jumbo {
+    background-image: url('../images/plant.png');
+    width: 100vw;
+    height: 60vh;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.zooalog-title {
+    padding-bottom: 2vh;
+    font-size: 10vw;
+    color: white;
+    letter-spacing: 2vw;
+}
+
+.zooalog-subtitle {
+    font-size: 2vw;
+    color: white;
+    letter-spacing: 0.5vw;
+}
+
+.home-cards {
+    margin-top: 20px;
+}
+
 .bottom-space {
     margin: 20px;
 }
@@ -41,4 +79,10 @@ footer.page-footer {
 
 .sci-name {
     font-style: italic;
+}
+
+@media only screen and (max-width: 601px) {
+    .home-nav {
+        font-size: 100%;
+    }
 }
