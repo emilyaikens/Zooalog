@@ -6,7 +6,9 @@ Zooalog is an animal husbandry tracking app that allows hobbyists with aquariums
 
 Users can keep track of animals in their enclosures, and create logs of diet and important habitat parameters.
 
-Why Zooalog?
+![Home page](./main_app/static/images/home.png)
+
+### Why Zooalog?
 
 I worked as a biologist for ten years before transitioning to a software engineering career. The majority of my time as a biologist was spent working closely with animal care departments at aquariums; collecting data, collecting and caring for specimens, and creating biologically appropriate enclosures. I have also spent time working with veterinary care facilities, and with animal care departments that specialize in non-marine organisms.
 
@@ -41,8 +43,6 @@ If you do not want to create an account, check out the screenshots below to see 
 
 ## Screenshots
 
-![Home page](./main_app/static/images/home.png)
-
 <details>
     <summary> Enclosure Index </summary>
     <img src="main_app/static/images/enclosure_index.png">
@@ -53,7 +53,7 @@ If you do not want to create an account, check out the screenshots below to see 
 </details>
 <details>
     <summary> Expanded Enclosure Detail </summary>
-    <img src="main_app/static/images/enclosure_expand.png">
+    <img src="main_app/static/images/enclosure-expand.png">
 </details>
 <details>
     <summary> Parameter Information </summary>
