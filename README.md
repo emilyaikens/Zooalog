@@ -33,7 +33,11 @@ This app is enclosure-centric, meaning the user must create an Enclosure in orde
 
 ## Getting Started!
 
-App is under construction so link is not yet available! Stay tuned.
+[Click here to view app](https://zooalog.herokuapp.com/)
+
+Creating enclosures requires user to be logged in. 
+
+If you do not want to create an account, check out the screenshots below to see some examples of the authorized pages. 
 
 ## Screenshots
 
